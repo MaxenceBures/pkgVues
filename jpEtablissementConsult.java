@@ -11,7 +11,6 @@ import javax.swing.table.DefaultTableModel;
 import org.hibernate.Query;
 import org.hibernate.Transaction;
 import pkgEntites.Etablissement;
-import pkgEntites.Typechambre;
 
 
 
@@ -340,7 +339,7 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
             {
                 type = 2;
             }
-           unEtablissement.setEtaType(type.byteValue());
+           unEtablissement.setEtaType(type);
            unEtablissement.setEtaNomresp(jtxtrespnom.getText());
            unEtablissement.setEtaPrenomresp(jtxtrespprenom.getText());
            unEtablissement.setEtaCivilresp(jcbccivil.getSelectedItem().toString());

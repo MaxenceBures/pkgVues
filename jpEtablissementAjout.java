@@ -281,7 +281,7 @@ public class jpEtablissementAjout extends javax.swing.JPanel {
     {
         type = 2;
     }
-   unNouveauEtablissement.setEtaType(Byte.parseByte(type));
+   unNouveauEtablissement.setEtaType(type);
    unNouveauEtablissement.setEtaNomresp(jtxtrespnom.getText());
    unNouveauEtablissement.setEtaPrenomresp(jtxtrespprenom.getText());
    unNouveauEtablissement.setEtaCivilresp(jcbccivil.getSelectedItem().toString());
