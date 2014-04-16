@@ -19,10 +19,10 @@ public class jfPrincipal extends javax.swing.JFrame {
    private  static Session session = HibernateUtil.getSessionFactory().openSession();
    protected jpEtablissementAjout pnlEtablissementAjout = new jpEtablissementAjout();
    protected jpEtablissementConsult pnlEtablissementConsult = new jpEtablissementConsult();
-   /*protected jpTypeChambreAjout pnlTypeChambreAjout = new jpTypeChambreAjout();
+   protected jpTypeChambreAjout pnlTypeChambreAjout = new jpTypeChambreAjout();
    protected jpTypeChambreConsult pnlTypeChambreConsult = new jpTypeChambreConsult();
    protected jpHebergementConsult pnlHebergementConsult = new jpHebergementConsult();
-   protected jpHebergementAjout pnlHebergementAjout = new jpHebergementAjout();*/
+   //protected jpHebergementAjout pnlHebergementAjout = new jpHebergementAjout();
    protected jpAccueil pnlAccueil  = new jpAccueil();
    private Container pnlPrinc = null;
     /**
@@ -212,22 +212,20 @@ public class jfPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmniEtablissementAjoutActionPerformed
 
     private void jmniChambresConsulterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmniChambresConsulterActionPerformed
-        // TODO add your handling code here:
-       /* this.setContentPane(pnlTypeChambreConsult);
+        this.setContentPane(pnlTypeChambreConsult);
         pnlTypeChambreConsult.chargerTable();
-        pack();*/
+        pack();
     }//GEN-LAST:event_jmniChambresConsulterActionPerformed
 
     private void jmniChambresAjoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmniChambresAjoutActionPerformed
-        // TODO add your handling code here:
-        //this.setContentPane(pnlTypeChambreAjout);
-        //pack();
+        this.setContentPane(pnlTypeChambreAjout);
+        pack();
     }//GEN-LAST:event_jmniChambresAjoutActionPerformed
 
     private void jmniHebergementConsulterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmniHebergementConsulterActionPerformed
-      /* this.setContentPane(pnlHebergementConsult);
-       pnlHebergementConsult.chargeListe();
-        pack(); // TODO add your handling code here:*/
+        this.setContentPane(pnlHebergementConsult);
+        pnlHebergementConsult.chargeListe();
+        pack(); // TODO add your handling code here:
     }//GEN-LAST:event_jmniHebergementConsulterActionPerformed
 
     private void jmniAttributionConsulterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmniAttributionConsulterActionPerformed

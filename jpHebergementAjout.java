@@ -12,7 +12,7 @@ import org.hibernate.Transaction;
 import pkgEntites.Etablissement;
 import pkgEntites.Offre;
 import pkgEntites.OffreId;
-import pkgEntites.TypeChambre;
+import pkgEntites.Typechambre;
 
 /**
  *
@@ -155,7 +155,7 @@ public class jpHebergementAjout extends javax.swing.JPanel {
         Iterator eta = q.iterate();
         while(eta.hasNext())
            {
-           TypeChambre unTypeChambre = (TypeChambre) eta.next();
+           Typechambre unTypeChambre = (Typechambre) eta.next();
            jCbListeTypeChambre.addItem(unTypeChambre.getTchLibelle());
            }
         bCharge = true;
@@ -194,7 +194,7 @@ public class jpHebergementAjout extends javax.swing.JPanel {
         OffreId unOffreId = new OffreId(sEtablissementId, sTypeChambreId);
         System.out.println(unOffreId.toString());
         unOffre.setId(unOffreId);
-        unOffre.setOffNbChambres(Integer.parseInt(jtxtModif.getText()));
+        unOffre.setOffNbchambres(Byte.parseByte(jtxtModif.getText()));
 
        
        // Transaction tx = jfPrincipal.getSession().beginTransaction();

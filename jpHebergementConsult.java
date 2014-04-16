@@ -190,7 +190,7 @@ public class jpHebergementConsult extends javax.swing.JPanel {
         String sReq = "from Offre Where Off_Etablissement = '"+sEtablissementId+"' And Off_TypeChambre = '"+sChambresId+"'";
         Query q = jfPrincipal.getSession().createQuery(sReq);
         Offre unOffre = (Offre) q.uniqueResult();
-        unOffre.setOffNbChambres(Integer.parseInt(jtxtModif.getText()));
+        unOffre.setOffNbchambres(Byte.parseByte(jtxtModif.getText()));
         Transaction tx = jfPrincipal.getSession().beginTransaction();
         tx.commit();
         jfPrincipal.getSession().update (unOffre);
@@ -213,7 +213,7 @@ public class jpHebergementConsult extends javax.swing.JPanel {
         while(eta.hasNext())
             {
             Offre unoffre = (Offre) eta.next();
-            ((DefaultTableModel) jTblHebergement.getModel()).addRow(new Object[] {unoffre.getId().getOffEtablissement(),unoffre.getId().getOffTypeChambre(), unoffre.getOffNbChambres()});
+            ((DefaultTableModel) jTblHebergement.getModel()).addRow(new Object[] {unoffre.getId().getOffEtablissement(),unoffre.getId().getOffTypechambre(), unoffre.getOffNbchambres()});
             }   
         }   
     }

@@ -9,7 +9,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.Query;
 import org.hibernate.Transaction;
-import pkgEntites.TypeChambre;
+import pkgEntites.Typechambre;
 
 /**
  *
@@ -167,11 +167,11 @@ public class jpTypeChambreConsult extends javax.swing.JPanel {
 
     private void jbtnModifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnModifActionPerformed
         // TODO add your handling code here:
-        String sReq = "FROM TypeChambre WHERE TCh_Id = ?";
+        String sReq = "FROM Typechambre WHERE TCh_Id = ?";
         Query q = jfPrincipal.getSession().createQuery(sReq);
         q.setParameter(0, jtxtid.getText());
         
-        TypeChambre unTypeChambre = (TypeChambre) q.uniqueResult();
+        Typechambre unTypeChambre = (Typechambre) q.uniqueResult();
         unTypeChambre.setTchLibelle(jtxtlibelle.getText());
         
         Transaction tx = jfPrincipal.getSession().beginTransaction();
@@ -193,11 +193,11 @@ public class jpTypeChambreConsult extends javax.swing.JPanel {
 
     private void jbtnSupprActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSupprActionPerformed
         // TODO add your handling code here:
-        String sReq = "FROM TypeChambre WHERE TCh_Id = ?";
+        String sReq = "FROM Typechambre WHERE TCh_Id = ?";
         Query q = jfPrincipal.getSession().createQuery(sReq);
         q.setParameter(0, jtxtid.getText());
         
-        TypeChambre unTypeChambre = (TypeChambre) q.uniqueResult();
+        Typechambre unTypeChambre = (Typechambre) q.uniqueResult();
         jfPrincipal.getSession().delete(unTypeChambre);
         
         Transaction tx = jfPrincipal.getSession().beginTransaction();
@@ -208,10 +208,10 @@ public class jpTypeChambreConsult extends javax.swing.JPanel {
     }//GEN-LAST:event_jbtnSupprActionPerformed
 
     private void chargerChamps(Object cellule){
-        String sReq = "From TypeChambre Where TCh_Id = ?";
+        String sReq = "FROM Typechambre WHERE TCh_Id = ?";
         Query q = jfPrincipal.getSession().createQuery(sReq);
         q.setParameter(0, cellule);
-        TypeChambre unTypeChambre = (TypeChambre) q.uniqueResult();
+        Typechambre unTypeChambre = (Typechambre) q.uniqueResult();
         jtxtid.setText(unTypeChambre.getTchId());
         jtxtlibelle.setText(unTypeChambre.getTchLibelle());
     }
@@ -225,12 +225,12 @@ public class jpTypeChambreConsult extends javax.swing.JPanel {
             for(i=0;i <nbligne; i++){
                 ((DefaultTableModel)tblconsult.getModel()).removeRow(0);
             }
-        String sReq = "From TypeChambre";
+        String sReq = "From Typechambre";
 
         Query q = jfPrincipal.getSession().createQuery(sReq);
         Iterator tch = q.iterate();
         while(tch.hasNext()){
-            TypeChambre unTypeChambre = (TypeChambre) tch.next();
+            Typechambre unTypeChambre = (Typechambre) tch.next();
             ((DefaultTableModel) tblconsult.getModel()).addRow(new Object[] {unTypeChambre.getTchId(), unTypeChambre.getTchLibelle()});
         }           
     }

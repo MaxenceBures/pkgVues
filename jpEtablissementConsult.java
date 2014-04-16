@@ -423,7 +423,7 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
             for(i=0;i <nbligne; i++){
                 ((DefaultTableModel)tblconsult.getModel()).removeRow(0);
             }
-        String sReq = "From Etablissement";
+        String sReq = "FROM Etablissement";
         
         Query q = jfPrincipal.getSession().createQuery(sReq);
         Iterator eta = q.iterate();

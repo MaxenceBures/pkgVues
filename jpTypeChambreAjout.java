@@ -6,7 +6,7 @@ package pkgVues;
 
 import javax.swing.JOptionPane;
 import org.hibernate.Transaction;
-import pkgEntites.TypeChambre;
+import pkgEntites.Typechambre;
 
 /**
  *
@@ -95,7 +95,7 @@ public class jpTypeChambreAjout extends javax.swing.JPanel {
     private void jbtnajoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnajoutActionPerformed
         // TODO add your handling code here:
       //  Session session = HibernateUtil.getSessionFactory().openSession();
-        TypeChambre unNewTypeChambre = new TypeChambre();
+        Typechambre unNewTypeChambre = new Typechambre();
         unNewTypeChambre.setTchId(jtxtid.getText());
         unNewTypeChambre.setTchLibelle(jtxtlibelle.getText());
         Transaction tx = jfPrincipal.getSession().beginTransaction();
