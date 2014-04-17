@@ -23,6 +23,7 @@ public class jfPrincipal extends javax.swing.JFrame {
    protected jpTypeChambreConsult pnlTypeChambreConsult = new jpTypeChambreConsult();
    protected jpHebergementConsult pnlHebergementConsult = new jpHebergementConsult();
    //protected jpHebergementAjout pnlHebergementAjout = new jpHebergementAjout();
+   protected jpAttributionConsult pnlAttributionConsult = new jpAttributionConsult();
    protected jpAccueil pnlAccueil  = new jpAccueil();
    private Container pnlPrinc = null;
     /**
@@ -225,11 +226,14 @@ public class jfPrincipal extends javax.swing.JFrame {
     private void jmniHebergementConsulterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmniHebergementConsulterActionPerformed
         this.setContentPane(pnlHebergementConsult);
         pnlHebergementConsult.chargeListe();
-        pack(); // TODO add your handling code here:
+        pack();
     }//GEN-LAST:event_jmniHebergementConsulterActionPerformed
 
     private void jmniAttributionConsulterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmniAttributionConsulterActionPerformed
-        // TODO add your handling code here:
+        this.setContentPane(pnlAttributionConsult);
+        pnlAttributionConsult.chargeListeEtablissement();
+        pnlAttributionConsult.chargeListeGroupe();
+        pack();
     }//GEN-LAST:event_jmniAttributionConsulterActionPerformed
 
     private void jmniAttributionAjoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmniAttributionAjoutActionPerformed
