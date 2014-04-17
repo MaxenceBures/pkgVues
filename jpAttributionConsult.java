@@ -33,30 +33,32 @@ public class jpAttributionConsult extends javax.swing.JPanel {
     }
 
     public void chargeListeEtablissement() {
-        String sReq = "From Etablissement";
+        String sReq = "From Etablissement Order BY Eta_id Asc";
         Query q = jfPrincipal.getSession().createQuery(sReq);
         jcmbEtablissement.removeAllItems();
         Iterator eta = q.iterate();
         while (eta.hasNext()) {
             Etablissement unEtablissement = (Etablissement) eta.next();
             jcmbEtablissement.addItem(unEtablissement.getEtaNom());
+           // jcmbEtablissement.addItem(unEtablissement.getEtaId());
         }
         bCharge = true;
     }
 
     public void chargeListeGroupe() {
-        String sReq2 = "From Groupe";
+        String sReq2 = "From Groupe Order By Gp_id Asc ";
         Query q2 = jfPrincipal.getSession().createQuery(sReq2);
         jcmbGroupe.removeAllItems();
         Iterator grp = q2.iterate();
         while (grp.hasNext()) {
             Groupe unGroupe = (Groupe) grp.next();
             jcmbGroupe.addItem(unGroupe.getGpNom());
+           // jcmbGroupe.addItem(unGroupe.getGpId());
         }
         bCharge2 = true;
     }
-    
-    private void chargeTable(String sEtablissementId, String sGroupeId){
+    //String sEtablissementId, String sGroupeId
+    private void chargeTable(){
         int nbligne;
         int i;
         nbligne = jTblAttribution.getRowCount();
@@ -64,17 +66,19 @@ public class jpAttributionConsult extends javax.swing.JPanel {
             {
             for(i=0;i <nbligne; i++){
                 ((DefaultTableModel)jTblAttribution.getModel()).removeRow(0);
-            }
-        String sReq = "FROM Attribution WHERE Att_Etablissement = '"+sEtablissementId+"' AND Att_Groupe = '"+sGroupeId+"' Order by Att_Etablissement, Att_Groupe Asc";
-        Query q = jfPrincipal.getSession().createQuery(sReq);
-        //q.setParameter(0, sEtablissementId);
-        Iterator eta = q.iterate();
+            }//'"+sEtablissementId+"' '"+sGroupeId+"'WHERE Att_Etablissement = ? AND Att_Groupe = ? 
+       String sReq = "FROM Attribution WHERE ATT_GROUPE = '"+sGroupeId+"' AND ATT_ETABLISSEMENT = '"+sEtablissementId+"'";//+"' AND ATT_ETABLISSEMENT = ?
+       Query q = jfPrincipal.getSession().createQuery(sReq);
+     //  q.setParameter(0, sGroupeId);
+     //  q.setParameter(1, sEtablissementId);
+       Iterator eta = q.iterate();
         while(eta.hasNext())
             {
             Attribution unAttribution = (Attribution) eta.next();
             ((DefaultTableModel) jTblAttribution.getModel()).addRow(new Object[] {unAttribution.getId().getAttEtablissement(),unAttribution.getId().getAttTypechambre(), unAttribution.getAttNbchambres()});
             }   
         }   
+         System.out.println(sEtablissementId+" "+sGroupeId);
     }
 
     /**
@@ -208,12 +212,13 @@ public class jpAttributionConsult extends javax.swing.JPanel {
             String sReq = "from Etablissement Where Eta_Nom = ?";
             Query q = jfPrincipal.getSession().createQuery(sReq);
             q.setParameter(0, jcmbEtablissement.getSelectedItem().toString());
-            Attribution unAttribution = (Attribution) q.uniqueResult();
+          //  Attribution unAttribution = (Attribution) q.uniqueResult();
           //  sTestId = unAttribution.getAttNbchambres();
-           // Etablissement unEtablissement = (Etablissement) q.uniqueResult();
-            sTestId = unAttribution.getId().getAttEtablissement();
+            Etablissement unEtablissement = (Etablissement) q.uniqueResult();
+            sEtablissementId = unEtablissement.getEtaId();
+            //sTestId = unAttribution.getId().getAttEtablissement();
             //chargeTable(sEtablissementId);
-            System.out.println(sTestId);
+            //System.out.println(sTestId);
         }
     }//GEN-LAST:event_jcmbEtablissementActionPerformed
 
@@ -230,9 +235,13 @@ public class jpAttributionConsult extends javax.swing.JPanel {
             String sReq = "from Groupe Where Gp_Nom = ?";
             Query q = jfPrincipal.getSession().createQuery(sReq);
             q.setParameter(0, jcmbGroupe.getSelectedItem());
-            Attribution unAttribution = (Attribution) q.uniqueResult();
-            sGroupeId = unAttribution.getId().getAttGroupe();
-            //chargeTable(sEtablissementId, sGroupeId);
+            //Attribution unAttribution = (Attribution) q.uniqueResult();
+            //sGroupeId = unAttribution.getId().getAttGroupe();
+              Groupe unGroupe = (Groupe) q.uniqueResult();
+              sGroupeId = unGroupe.getGpId();
+            //System.out.println(sEtablissementId + sGroupeId);
+            chargeTable();//
+           
         }
     }//GEN-LAST:event_jcmbGroupeActionPerformed
 
