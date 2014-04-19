@@ -110,6 +110,11 @@ public class jpHebergementConsult extends javax.swing.JPanel {
         }
 
         jtxtModif.setText("jTextField1");
+        jtxtModif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxtModifActionPerformed(evt);
+            }
+        });
 
         jlblQuantite.setText("Nombre Chambres");
 
@@ -196,6 +201,10 @@ public class jpHebergementConsult extends javax.swing.JPanel {
         jfPrincipal.getSession().update (unOffre);
         chargeTable(sEtablissementId);
     }//GEN-LAST:event_jbtnModifActionPerformed
+
+    private void jtxtModifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtModifActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxtModifActionPerformed
 
     private void chargeTable(String sEtablissementId){
         int nbligne;

@@ -8,7 +8,7 @@ package pkgVues;
 
 /**
  *
- * @author Maxence
+ * @author Maxence et Chloé
  */
 public class jpAccueil extends javax.swing.JPanel {
 
