@@ -16,33 +16,53 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="150" max="32767" attributes="0"/>
+              <EmptySpace pref="197" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jlblEtablissement" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlblGroupe" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jlblEtablissement" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlblGroupe" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jcmbEtablissement" min="-2" max="-2" attributes="0"/>
+                          <Component id="jcmbGroupe" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jbtModifier" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jbtModifier" min="-2" max="-2" attributes="0"/>
-                  <Component id="jcmbEtablissement" min="-2" max="-2" attributes="0"/>
-                  <Component id="jcmbGroupe" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-              <Component id="jlblQuantite" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jtxtQuantite" min="-2" pref="36" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="310" max="-2" attributes="0"/>
-                  <EmptySpace pref="45" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jlblRecap" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jlblQuantite" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlblEtabRecap" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlblGroupeRecap" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlblTypeChambreRecap" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jtxtQuantite" min="-2" pref="36" max="-2" attributes="0"/>
+                          <Component id="jtxtEtabRecap" pref="230" max="32767" attributes="0"/>
+                          <Component id="jtxtGroupeRecap" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jtxtTypeChambreRecap" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -59,21 +79,33 @@
                   <Component id="jlblGroupe" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jcmbGroupe" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="208" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="120" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jlblRecap" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jlblEtabRecap" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtxtEtabRecap" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jlblGroupeRecap" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtxtGroupeRecap" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jlblTypeChambreRecap" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtxtTypeChambreRecap" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jlblQuantite" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jtxtQuantite" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jbtModifier" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-          </Group>
-          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="124" max="-2" attributes="0"/>
-                  <EmptySpace pref="131" max="32767" attributes="0"/>
-              </Group>
+              <EmptySpace pref="26" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -115,7 +147,7 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="3" rowCount="4">
-                <Column editable="false" title="Capacit&#xe9;" type="java.lang.Object"/>
+                <Column editable="false" title="Type Chambre" type="java.lang.Object"/>
                 <Column editable="false" title="Quantit&#xe9; Dispo" type="java.lang.Object"/>
                 <Column editable="false" title="Quantit&#xe9; Prise" type="java.lang.Object"/>
               </Table>
@@ -155,6 +187,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtxtQuantite">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtxtQuantiteActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbtModifier">
       <Properties>
@@ -178,6 +213,35 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcmbGroupeActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlblRecap">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="18" style="1"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="R&#xe9;capitulatif"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlblEtabRecap">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Etablissement"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlblGroupeRecap">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Groupe"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlblTypeChambreRecap">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Type Chambre"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jtxtEtabRecap">
+    </Component>
+    <Component class="javax.swing.JTextField" name="jtxtGroupeRecap">
+    </Component>
+    <Component class="javax.swing.JTextField" name="jtxtTypeChambreRecap">
     </Component>
   </SubComponents>
 </Form>
