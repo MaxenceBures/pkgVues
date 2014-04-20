@@ -12,7 +12,6 @@ import org.hibernate.Transaction;
 import pkgEntites.Attribution;
 import pkgEntites.Etablissement;
 import pkgEntites.Groupe;
-import pkgEntites.Typechambre;
 
 /**
  *
@@ -34,6 +33,7 @@ public class jpAttributionConsult extends javax.swing.JPanel {
         jtxtEtabRecap.disable();
         jtxtGroupeRecap.disable();
         jtxtTypeChambreRecap.disable();
+        jlblAttribution.setText("<html>Sélectionner en premier un établissement,<br/> puis un groupe</html>");
     }
 
     public void chargeListeEtablissement() {
@@ -105,7 +105,7 @@ public class jpAttributionConsult extends javax.swing.JPanel {
         jtxtEtabRecap = new javax.swing.JTextField();
         jtxtGroupeRecap = new javax.swing.JTextField();
         jtxtTypeChambreRecap = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        jlblAttribution = new javax.swing.JLabel();
 
         jlblEtablissement.setText("Etablissement");
 
@@ -181,7 +181,7 @@ public class jpAttributionConsult extends javax.swing.JPanel {
 
         jlblTypeChambreRecap.setText("Type Chambre");
 
-        jLabel1.setText("<html><span>Selectionner en premier un etablissement,\\n puis un groupe</span></html>");
+        jlblAttribution.setText("Selectionner en premier un etablissement, puis un groupe");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -193,11 +193,7 @@ public class jpAttributionConsult extends javax.swing.JPanel {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jlblQuantite)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtxtQuantite, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtModifier))
+                .addComponent(jbtModifier)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
@@ -214,13 +210,17 @@ public class jpAttributionConsult extends javax.swing.JPanel {
                             .addComponent(jtxtEtabRecap, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
                             .addComponent(jtxtTypeChambreRecap))
                         .addGap(35, 35, 35)
-                        .addComponent(jlblGroupeRecap)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlblGroupeRecap)
+                            .addComponent(jlblQuantite))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jtxtGroupeRecap, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtxtQuantite, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jtxtGroupeRecap, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(19, 19, 19))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel1)
+                .addComponent(jlblAttribution, javax.swing.GroupLayout.DEFAULT_SIZE, 285, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jlblEtablissement)
@@ -244,7 +244,7 @@ public class jpAttributionConsult extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jlblGroupe)
                             .addComponent(jcmbGroupe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel1))
+                    .addComponent(jlblAttribution, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(45, 45, 45)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -258,14 +258,12 @@ public class jpAttributionConsult extends javax.swing.JPanel {
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlblTypeChambreRecap)
-                    .addComponent(jtxtTypeChambreRecap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtxtQuantite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlblQuantite))
-                .addGap(73, 73, 73)
+                    .addComponent(jtxtTypeChambreRecap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblQuantite)
+                    .addComponent(jtxtQuantite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                 .addComponent(jbtModifier)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGap(51, 51, 51))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -318,12 +316,12 @@ public class jpAttributionConsult extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTblAttribution;
     private javax.swing.JButton jbtModifier;
     private javax.swing.JComboBox jcmbEtablissement;
     private javax.swing.JComboBox jcmbGroupe;
+    private javax.swing.JLabel jlblAttribution;
     private javax.swing.JLabel jlblEtabRecap;
     private javax.swing.JLabel jlblEtablissement;
     private javax.swing.JLabel jlblGroupe;

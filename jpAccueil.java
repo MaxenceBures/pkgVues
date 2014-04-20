@@ -17,7 +17,7 @@ public class jpAccueil extends javax.swing.JPanel {
      */
     public jpAccueil() {
         initComponents();
-        lblPresentation.setText("<html>Cette application web permet de gérer l'hébergement des <br/>groupes de musique durant le festival Folklores du Monde</html>");
+        lblPresentation.setText("<html>Cette application permet de gérer l'hébergement des <br/>groupes de musique durant le festival Folklores du Monde</html>");
     }
 
     /**
@@ -46,21 +46,21 @@ public class jpAccueil extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(147, 147, 147)
+                        .addGap(180, 180, 180)
                         .addComponent(lblAccueil))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
+                        .addGap(21, 21, 21)
                         .addComponent(lblPresentation)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblAccueil, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
+                .addGap(56, 56, 56)
                 .addComponent(lblPresentation)
-                .addContainerGap(192, Short.MAX_VALUE))
+                .addContainerGap(214, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
