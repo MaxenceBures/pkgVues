@@ -12,6 +12,7 @@ import org.hibernate.Transaction;
 import pkgEntites.Attribution;
 import pkgEntites.Etablissement;
 import pkgEntites.Groupe;
+import pkgEntites.Offre;
 import pkgEntites.Typechambre;
 
 /**
@@ -25,6 +26,7 @@ public class jpAttributionConsult extends javax.swing.JPanel {
     private String sEtablissementId = "";
     private String sGroupeId = "";
     private String sTypeChambre = "";
+    private String sOffre = "" ;
 
     /**
      * Creates new form jpAttributionConsult
@@ -69,17 +71,39 @@ public class jpAttributionConsult extends javax.swing.JPanel {
             {
             for(i=0;i <nbligne; i++) {
                 ((DefaultTableModel)jTblAttribution.getModel()).removeRow(0);
-            }
-       String sReq = "FROM Attribution WHERE ATT_GROUPE = '"+sGroupeId+"' AND ATT_ETABLISSEMENT = '"+sEtablissementId+"'";
-       Query q = jfPrincipal.getSession().createQuery(sReq);
-       Iterator att = q.iterate();
-       while(att.hasNext()) {
+            }    
+        String sReq = "FROM Attribution WHERE ATT_GROUPE = '"+sGroupeId+"' AND ATT_ETABLISSEMENT = '"+sEtablissementId+"'";
+        Query q = jfPrincipal.getSession().createQuery(sReq);
+        Iterator att = q.iterate();
+        while(att.hasNext()) {
                 Attribution unAttribution = (Attribution) att.next();
                 ((DefaultTableModel) jTblAttribution.getModel()).addRow(new Object[] {unAttribution.getId().getAttTypechambre(), unAttribution.getId().getAttGroupe(), unAttribution.getAttNbchambres()});
             }   
         }   
         //System.out.println(sEtablissementId+" "+sGroupeId);
     }
+    
+    private void test(){
+        int nbligne;
+        int i;
+        nbligne = jTblAttribution.getRowCount();
+        if(nbligne > 0)
+            {
+            for(i=0;i <nbligne; i++) {
+                ((DefaultTableModel)jTblAttribution.getModel()).removeRow(0);
+            }  
+        Query q2 = jfPrincipal.getSession().createSQLQuery("select attribution.*, offre.* from attribution left join typechambre on attribution.att_typechambre = typechambre.tch_id left join offre on offre.off_typechambre = typechambre.tch_id where att_groupe = '"+sGroupeId+"' and off_etablissement = '"+sOffre+"'");
+        //Offre unOffre = (Offre) q2.uniqueResult();
+        String sReq = "FROM Attribution WHERE ATT_GROUPE = '"+sGroupeId+"' AND ATT_ETABLISSEMENT = '"+sEtablissementId+"'";
+        Query q = jfPrincipal.getSession().createQuery(sReq);
+        Iterator att = q.iterate();
+        while(att.hasNext()) {
+                Attribution unAttribution = (Attribution) att.next();
+                Offre unOffre = (Offre) q2.uniqueResult();
+                ((DefaultTableModel) jTblAttribution.getModel()).addRow(new Object[] {unAttribution.getId().getAttTypechambre(), unOffre.getOffNbchambres(), unAttribution.getAttNbchambres()});
+            }   
+        }        
+   }
     
     private void chargerEtablissement(String cellule){
         String sReq = "From Etablissement Where Eta_Nom = ?";
@@ -314,7 +338,8 @@ public class jpAttributionConsult extends javax.swing.JPanel {
             q.setParameter(0, jcmbGroupe.getSelectedItem());
             Groupe unGroupe = (Groupe) q.uniqueResult();
             sGroupeId = unGroupe.getGpId();
-            chargeTable();          
+            //chargeTable();  
+            test();
         }
     }//GEN-LAST:event_jcmbGroupeActionPerformed
 
