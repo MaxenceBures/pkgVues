@@ -105,26 +105,7 @@ public class jpAttributionConsult extends javax.swing.JPanel {
             }
     }
     
-    /*private void test(){
-        int nbligne;
-        int i;
-        nbligne = jTblAttribution.getRowCount();
-        if(nbligne > 0)
-            {
-            for(i=0;i <nbligne; i++) {
-                ((DefaultTableModel)jTblAttribution.getModel()).removeRow(0);
-            }  
-    
-        String sReq = "FROM Attribution WHERE ATT_GROUPE = '"+sGroupeId+"' AND ATT_ETABLISSEMENT = '"+sEtablissementId+"'";
-        Query q = jfPrincipal.getSession().createQuery(sReq);
-        Iterator att = q.iterate();
-        while(att.hasNext()) {
-                Attribution unAttribution = (Attribution) att.next();
-               
-                ((DefaultTableModel) jTblAttribution.getModel()).addRow(new Object[] {unAttribution.getId().getAttTypechambre(), unAttribution.getAttNbchambres()});//, unOffre.getOffNbchambres()
-            }   
-        }        
-   }*/
+   
     
     private void chargerEtablissement(String sEtablissement){
         String sReq = "From Etablissement Where Eta_Nom = ?";
