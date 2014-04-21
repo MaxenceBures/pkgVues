@@ -22,6 +22,21 @@
               <EmptySpace max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <Component id="jlblAttribution" max="32767" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jlblEtablissement" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="jlblGroupe" alignment="0" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jcmbEtablissement" min="-2" max="-2" attributes="0"/>
+                  <Component id="jcmbGroupe" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Component id="jbtModifier" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -36,41 +51,26 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jlblEtabRecap" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jlblTypeChambreRecap" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jtxtEtabRecap" pref="77" max="32767" attributes="0"/>
-                          <Component id="jtxtTypeChambreRecap" max="32767" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jlblGroupeRecap" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jlblQuantite" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jtxtQuantite" min="-2" pref="49" max="-2" attributes="0"/>
-                          <Component id="jtxtGroupeRecap" min="-2" pref="107" max="-2" attributes="0"/>
+                          <Component id="jtxtGroupeRecap" min="-2" pref="180" max="-2" attributes="0"/>
+                          <Component id="jtxtEtabRecap" min="-2" pref="180" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="25" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jlblQuantite" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlblTypeChambreRecap" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jtxtTypeChambreRecap" min="-2" pref="77" max="-2" attributes="0"/>
+                          <Component id="jtxtQuantite" min="-2" pref="30" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-              <Component id="jlblAttribution" pref="285" max="32767" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jlblEtablissement" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlblGroupe" alignment="0" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jcmbEtablissement" min="-2" max="-2" attributes="0"/>
-                  <Component id="jcmbGroupe" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -100,17 +100,17 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jlblEtabRecap" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jtxtEtabRecap" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlblGroupeRecap" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jtxtGroupeRecap" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jlblTypeChambreRecap" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jtxtTypeChambreRecap" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jlblQuantite" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jtxtQuantite" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="74" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jlblGroupeRecap" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtxtGroupeRecap" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jlblTypeChambreRecap" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtxtTypeChambreRecap" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="91" max="32767" attributes="0"/>
               <Component id="jbtModifier" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
           </Group>
@@ -194,9 +194,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtxtQuantite">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtxtQuantiteActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jbtModifier">
       <Properties>
