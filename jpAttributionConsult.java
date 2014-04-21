@@ -382,29 +382,15 @@ public class jpAttributionConsult extends javax.swing.JPanel {
             }    
         String sReq = "FROM Attribution WHERE ATT_GROUPE = '"+sGroupeId+"' AND ATT_ETABLISSEMENT = '"+sEtablissementId+"'";
         Query q = jfPrincipal.getSession().createQuery(sReq);
-      // Attribution unAttribution = (Attribution) q.uniqueResult();
-       if(q.list().size() == 0){
-           jlbltest.setText("0");
-       }
-       else{
 
-           jlbltest.setText("2");
            Iterator att = q.iterate();
            while(att.hasNext()) {
                 Attribution unAttribution = (Attribution) att.next();
                 ((DefaultTableModel) jTblAttribution.getModel()).addRow(new Object[] {unAttribution.getId().getAttTypechambre(), unAttribution.getAttNbchambres()});
        
-                             }
             }
             }
     }
-       /* Iterator att = q.iterate();
-        while(att.hasNext()) {
-                Attribution unAttribution = (Attribution) att.next();
-                ((DefaultTableModel) jTblAttribution.getModel()).addRow(new Object[] {unAttribution.getId().getAttTypechambre(), unAttribution.getAttNbchambres()});
-
-        }   */
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTblAttribution;
