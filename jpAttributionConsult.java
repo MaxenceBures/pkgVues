@@ -40,6 +40,14 @@ public class jpAttributionConsult extends javax.swing.JPanel {
         jlblAttribution.setText("<html>Sélectionner en premier un établissement,<br/> puis un groupe</html>");
     }
 
+     public void viderChamps() {
+       jtxtEtabRecap.setText("");
+        jtxtGroupeRecap.setText("");
+        jtxtTypeChambreRecap.setText("");
+        jtxtQuantiteLibre.setText("");
+        jtxtQuantite.setText("");
+    }
+    
     public void chargeListeEtablissement() {
         String sReq = "FROM Etablissement ORDER BY Eta_id ASC";
         Query q = jfPrincipal.getSession().createQuery(sReq);
@@ -78,13 +86,13 @@ public class jpAttributionConsult extends javax.swing.JPanel {
         Iterator att = q.iterate();
         while(att.hasNext()) {
                 Attribution unAttribution = (Attribution) att.next();
-                ((DefaultTableModel) jTblAttribution.getModel()).addRow(new Object[] {unAttribution.getId().getAttTypechambre(), unAttribution.getId().getAttGroupe(), unAttribution.getAttNbchambres()});
+                ((DefaultTableModel) jTblAttribution.getModel()).addRow(new Object[] {unAttribution.getId().getAttTypechambre(), unAttribution.getAttNbchambres()});
             }   
         }   
         //System.out.println(sEtablissementId+" "+sGroupeId);
     }
     
-    private void test(){
+    /*private void test(){
         int nbligne;
         int i;
         nbligne = jTblAttribution.getRowCount();
@@ -93,11 +101,7 @@ public class jpAttributionConsult extends javax.swing.JPanel {
             for(i=0;i <nbligne; i++) {
                 ((DefaultTableModel)jTblAttribution.getModel()).removeRow(0);
             }  
-     //   Query q2 = jfPrincipal.getSession().createSQLQuery("select attribution.*, offre.* from attribution left join typechambre on attribution.att_typechambre = typechambre.tch_id left join offre on offre.off_typechambre = typechambre.tch_id where att_groupe = '"+sGroupeId+"' and off_etablissement = '"+sOffre+"'");
-     //    Offre unOffre = (Offre) q2.uniqueResult();
-     //    byte value = unOffre.getOffNbchambres();
-        // jlbltest.setText(Byte.toString(value);
-//Offre unOffre = (Offre) q2.uniqueResult();
+    
         String sReq = "FROM Attribution WHERE ATT_GROUPE = '"+sGroupeId+"' AND ATT_ETABLISSEMENT = '"+sEtablissementId+"'";
         Query q = jfPrincipal.getSession().createQuery(sReq);
         Iterator att = q.iterate();
@@ -107,30 +111,48 @@ public class jpAttributionConsult extends javax.swing.JPanel {
                 ((DefaultTableModel) jTblAttribution.getModel()).addRow(new Object[] {unAttribution.getId().getAttTypechambre(), unAttribution.getAttNbchambres()});//, unOffre.getOffNbchambres()
             }   
         }        
-   }
+   }*/
     
-    private void chargerEtablissement(String cellule){
+    private void chargerEtablissement(String sEtablissement){
         String sReq = "From Etablissement Where Eta_Nom = ?";
         Query q = jfPrincipal.getSession().createQuery(sReq);
-        q.setParameter(0, cellule);
+        q.setParameter(0, sEtablissement);
         Etablissement unEtablissement = (Etablissement) q.uniqueResult();
         jtxtEtabRecap.setText(unEtablissement.getEtaNom());
     }
     
-    private void chargerGroupe(String cellule){
+    private void chargerGroupe(String sGroupe){
         String sReq = "From Groupe Where Gp_Nom = ?";
         Query q = jfPrincipal.getSession().createQuery(sReq);
-        q.setParameter(0, cellule);
+        q.setParameter(0, sGroupe);
         Groupe unGroupe = (Groupe) q.uniqueResult();
         jtxtGroupeRecap.setText(unGroupe.getGpNom());
     }
     
-    private void chargerChambre(Object cellule){
+    private void chargerChambre(String sChambre){
         String sReq = "From Typechambre Where Tch_Id = ?";
         Query q = jfPrincipal.getSession().createQuery(sReq);
-        q.setParameter(0, cellule);
+        q.setParameter(0, sChambre);
         Typechambre unTypechambre = (Typechambre) q.uniqueResult();
         jtxtTypeChambreRecap.setText(unTypechambre.getTchLibelle());
+    }
+    
+     private void chargerQuantite(String sEtablissement, String sTypeChambre){
+        int value = 0;
+        String sReq = "From Offre Where OFF_ETABLISSEMENT = '"+sEtablissement+"' AND OFF_TYPECHAMBRE = '"+sTypeChambre+"'";
+        Query q = jfPrincipal.getSession().createQuery(sReq);
+        String sReq2 = "From Attribution Where ATT_ETABLISSEMENT = '"+sEtablissement+"' AND ATT_TYPECHAMBRE = '"+sTypeChambre+"'";
+        Query q2 = jfPrincipal.getSession().createQuery(sReq2);
+        Offre unOffre = (Offre) q.uniqueResult();
+      
+         Iterator att = q2.iterate();
+        while(att.hasNext()) {
+                Attribution unAttribution2 = (Attribution) att.next();
+               value += unAttribution2.getAttNbchambres();
+                }   
+        
+        int result = unOffre.getOffNbchambres() - value;
+        jtxtQuantiteLibre.setText(String.valueOf(result));
     }
 
     /**
@@ -335,6 +357,7 @@ public class jpAttributionConsult extends javax.swing.JPanel {
 
     private void jcmbEtablissementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbEtablissementActionPerformed
         if (bCharge) {
+            viderChamps();
             String sReq = "FROM Etablissement WHERE Eta_Nom = ?";
             Query q = jfPrincipal.getSession().createQuery(sReq);
             q.setParameter(0, jcmbEtablissement.getSelectedItem().toString());
@@ -351,18 +374,20 @@ public class jpAttributionConsult extends javax.swing.JPanel {
         jtxtQuantite.setText(celluleQuantite.toString());
         chargerEtablissement(jcmbEtablissement.getSelectedItem().toString());
         chargerGroupe(jcmbGroupe.getSelectedItem().toString());
-        chargerChambre(celluleType);
+        chargerChambre(celluleType.toString());
+        chargerQuantite(sEtablissementId, sTypeChambre);
     }//GEN-LAST:event_jTblAttributionMouseClicked
 
     private void jcmbGroupeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbGroupeActionPerformed
         if (bCharge2) {
+            viderChamps();
             String sReq = "FROM Groupe WHERE Gp_Nom = ?";
             Query q = jfPrincipal.getSession().createQuery(sReq);
             q.setParameter(0, jcmbGroupe.getSelectedItem());
             Groupe unGroupe = (Groupe) q.uniqueResult();
             sGroupeId = unGroupe.getGpId();
-            //chargeTable();  
-            test();
+            chargeTable();  
+            //test();
         }
     }//GEN-LAST:event_jcmbGroupeActionPerformed
 
