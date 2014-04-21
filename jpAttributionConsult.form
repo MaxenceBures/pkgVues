@@ -72,6 +72,11 @@
                   </Group>
               </Group>
           </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="180" max="-2" attributes="0"/>
+              <Component id="jlbltest" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -110,7 +115,9 @@
                   <Component id="jlblTypeChambreRecap" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jtxtTypeChambreRecap" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="91" max="32767" attributes="0"/>
+              <EmptySpace pref="57" max="32767" attributes="0"/>
+              <Component id="jlbltest" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Component id="jbtModifier" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
           </Group>
@@ -250,6 +257,11 @@
     <Component class="javax.swing.JLabel" name="jlblAttribution">
       <Properties>
         <Property name="text" type="java.lang.String" value="Selectionner en premier un etablissement, puis un groupe"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlbltest">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Groupe"/>
       </Properties>
     </Component>
   </SubComponents>
