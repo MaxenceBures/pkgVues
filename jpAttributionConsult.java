@@ -41,7 +41,7 @@ public class jpAttributionConsult extends javax.swing.JPanel {
     }
 
      public void viderChamps() {
-       jtxtEtabRecap.setText("");
+        jtxtEtabRecap.setText("");
         jtxtGroupeRecap.setText("");
         jtxtTypeChambreRecap.setText("");
         jtxtQuantiteLibre.setText("");
@@ -83,13 +83,26 @@ public class jpAttributionConsult extends javax.swing.JPanel {
             }    
         String sReq = "FROM Attribution WHERE ATT_GROUPE = '"+sGroupeId+"' AND ATT_ETABLISSEMENT = '"+sEtablissementId+"'";
         Query q = jfPrincipal.getSession().createQuery(sReq);
-        Iterator att = q.iterate();
+      // Attribution unAttribution = (Attribution) q.uniqueResult();
+       if(q.list().size() == 0){
+           jlbltest.setText("0");
+       }
+       if(q.list().size() == 1){
+           jlbltest.setText("1");
+           
+       }
+       if(q.list().size() > 1){
+           jlbltest.setText("2");
+           
+       }
+       
+       /* Iterator att = q.iterate();
         while(att.hasNext()) {
                 Attribution unAttribution = (Attribution) att.next();
                 ((DefaultTableModel) jTblAttribution.getModel()).addRow(new Object[] {unAttribution.getId().getAttTypechambre(), unAttribution.getAttNbchambres()});
-            }   
-        }   
-        //System.out.println(sEtablissementId+" "+sGroupeId);
+
+        }   */
+            }
     }
     
     /*private void test(){
@@ -183,6 +196,7 @@ public class jpAttributionConsult extends javax.swing.JPanel {
         jlblAttribution = new javax.swing.JLabel();
         jlblQuantiteLibre = new javax.swing.JLabel();
         jtxtQuantiteLibre = new javax.swing.JTextField();
+        jlbltest = new javax.swing.JLabel();
 
         jlblEtablissement.setText("Etablissement");
 
@@ -255,6 +269,8 @@ public class jpAttributionConsult extends javax.swing.JPanel {
 
         jlblQuantiteLibre.setText("Quantité Libre");
 
+        jlbltest.setText("Groupe");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -276,7 +292,9 @@ public class jpAttributionConsult extends javax.swing.JPanel {
                     .addComponent(jcmbGroupe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(54, 54, 54))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(81, 81, 81)
+                .addComponent(jlbltest)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbtModifier)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
@@ -343,7 +361,9 @@ public class jpAttributionConsult extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jbtModifier)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jbtModifier)
+                            .addComponent(jlbltest))
                         .addGap(51, 51, 51))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -418,6 +438,7 @@ public class jpAttributionConsult extends javax.swing.JPanel {
     private javax.swing.JLabel jlblQuantiteLibre;
     private javax.swing.JLabel jlblRecap;
     private javax.swing.JLabel jlblTypeChambreRecap;
+    private javax.swing.JLabel jlbltest;
     private javax.swing.JTextField jtxtEtabRecap;
     private javax.swing.JTextField jtxtGroupeRecap;
     private javax.swing.JTextField jtxtQuantite;

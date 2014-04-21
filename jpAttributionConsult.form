@@ -37,7 +37,9 @@
               <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="160" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+              <Component id="jlbltest" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="jbtModifier" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -123,7 +125,10 @@
               <EmptySpace pref="34" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jbtModifier" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jbtModifier" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jlbltest" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
@@ -275,6 +280,11 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtxtQuantiteLibre">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jlbltest">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Groupe"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
