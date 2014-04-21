@@ -36,6 +36,7 @@ public class jpAttributionConsult extends javax.swing.JPanel {
         jtxtEtabRecap.disable();
         jtxtGroupeRecap.disable();
         jtxtTypeChambreRecap.disable();
+        jtxtQuantiteLibre.disable();
         jlblAttribution.setText("<html>Sélectionner en premier un établissement,<br/> puis un groupe</html>");
     }
 
@@ -92,9 +93,9 @@ public class jpAttributionConsult extends javax.swing.JPanel {
             for(i=0;i <nbligne; i++) {
                 ((DefaultTableModel)jTblAttribution.getModel()).removeRow(0);
             }  
-        Query q2 = jfPrincipal.getSession().createSQLQuery("select attribution.*, offre.* from attribution left join typechambre on attribution.att_typechambre = typechambre.tch_id left join offre on offre.off_typechambre = typechambre.tch_id where att_groupe = '"+sGroupeId+"' and off_etablissement = '"+sOffre+"'");
-         Offre unOffre = (Offre) q2.uniqueResult();
-         byte value = unOffre.getOffNbchambres();
+     //   Query q2 = jfPrincipal.getSession().createSQLQuery("select attribution.*, offre.* from attribution left join typechambre on attribution.att_typechambre = typechambre.tch_id left join offre on offre.off_typechambre = typechambre.tch_id where att_groupe = '"+sGroupeId+"' and off_etablissement = '"+sOffre+"'");
+     //    Offre unOffre = (Offre) q2.uniqueResult();
+     //    byte value = unOffre.getOffNbchambres();
         // jlbltest.setText(Byte.toString(value);
 //Offre unOffre = (Offre) q2.uniqueResult();
         String sReq = "FROM Attribution WHERE ATT_GROUPE = '"+sGroupeId+"' AND ATT_ETABLISSEMENT = '"+sEtablissementId+"'";
@@ -158,7 +159,8 @@ public class jpAttributionConsult extends javax.swing.JPanel {
         jtxtGroupeRecap = new javax.swing.JTextField();
         jtxtTypeChambreRecap = new javax.swing.JTextField();
         jlblAttribution = new javax.swing.JLabel();
-        jlbltest = new javax.swing.JLabel();
+        jlblQuantiteLibre = new javax.swing.JLabel();
+        jtxtQuantiteLibre = new javax.swing.JTextField();
 
         jlblEtablissement.setText("Etablissement");
 
@@ -173,17 +175,17 @@ public class jpAttributionConsult extends javax.swing.JPanel {
 
         jTblAttribution.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Type Chambre", "Quantité Dispo", "Quantité Prise"
+                "Type Chambre", "Quantité Prise"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -200,7 +202,6 @@ public class jpAttributionConsult extends javax.swing.JPanel {
         if (jTblAttribution.getColumnModel().getColumnCount() > 0) {
             jTblAttribution.getColumnModel().getColumn(0).setResizable(false);
             jTblAttribution.getColumnModel().getColumn(1).setResizable(false);
-            jTblAttribution.getColumnModel().getColumn(2).setResizable(false);
         }
 
         jlblQuantite.setText("Quantité Demandée");
@@ -230,7 +231,7 @@ public class jpAttributionConsult extends javax.swing.JPanel {
 
         jlblAttribution.setText("Selectionner en premier un etablissement, puis un groupe");
 
-        jlbltest.setText("Groupe");
+        jlblQuantiteLibre.setText("Quantité Libre");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -257,32 +258,37 @@ public class jpAttributionConsult extends javax.swing.JPanel {
                 .addComponent(jbtModifier)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jlblGroupeRecap)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jlblRecap)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlblEtabRecap)
-                            .addComponent(jlblGroupeRecap))
+                        .addComponent(jlblEtabRecap)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtxtGroupeRecap, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jtxtEtabRecap, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jtxtEtabRecap, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(85, 85, 85)
+                                .addComponent(jlblTypeChambreRecap))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jtxtGroupeRecap, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(73, 73, 73)
+                                .addComponent(jlblQuantite)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlblQuantite)
-                            .addComponent(jlblTypeChambreRecap))
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jtxtTypeChambreRecap, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jtxtQuantite, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(180, 180, 180)
-                .addComponent(jlbltest)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(43, 43, 43))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jlblQuantiteLibre)
+                                .addGap(18, 18, 18)
+                                .addComponent(jtxtQuantiteLibre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jlblRecap))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,19 +312,24 @@ public class jpAttributionConsult extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlblEtabRecap)
                     .addComponent(jtxtEtabRecap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlblQuantite)
-                    .addComponent(jtxtQuantite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlblGroupeRecap)
-                    .addComponent(jtxtGroupeRecap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlblTypeChambreRecap)
                     .addComponent(jtxtTypeChambreRecap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addComponent(jlbltest)
-                .addGap(18, 18, 18)
-                .addComponent(jbtModifier)
-                .addGap(51, 51, 51))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblQuantiteLibre)
+                    .addComponent(jtxtQuantiteLibre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jbtModifier)
+                        .addGap(51, 51, 51))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jlblGroupeRecap)
+                            .addComponent(jtxtGroupeRecap, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlblQuantite)
+                            .addComponent(jtxtQuantite, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(109, 109, 109))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -334,7 +345,7 @@ public class jpAttributionConsult extends javax.swing.JPanel {
 
     private void jTblAttributionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblAttributionMouseClicked
         int ligne = jTblAttribution.getSelectedRow();
-        Object celluleQuantite = jTblAttribution.getValueAt(ligne, 2);
+        Object celluleQuantite = jTblAttribution.getValueAt(ligne, 1);
         Object celluleType = jTblAttribution.getValueAt(ligne, 0);
         sTypeChambre = celluleType.toString();
         jtxtQuantite.setText(celluleQuantite.toString());
@@ -379,12 +390,13 @@ public class jpAttributionConsult extends javax.swing.JPanel {
     private javax.swing.JLabel jlblGroupe;
     private javax.swing.JLabel jlblGroupeRecap;
     private javax.swing.JLabel jlblQuantite;
+    private javax.swing.JLabel jlblQuantiteLibre;
     private javax.swing.JLabel jlblRecap;
     private javax.swing.JLabel jlblTypeChambreRecap;
-    private javax.swing.JLabel jlbltest;
     private javax.swing.JTextField jtxtEtabRecap;
     private javax.swing.JTextField jtxtGroupeRecap;
     private javax.swing.JTextField jtxtQuantite;
+    private javax.swing.JTextField jtxtQuantiteLibre;
     private javax.swing.JTextField jtxtTypeChambreRecap;
     // End of variables declaration//GEN-END:variables
 }
