@@ -12,6 +12,7 @@ import org.hibernate.Query;
 import org.hibernate.Transaction;
 import pkgEntites.Etablissement;
 import pkgEntites.Offre;
+import pkgEntites.Typechambre;
 
 /**
  *
@@ -43,6 +44,19 @@ public class jpHebergementConsult extends javax.swing.JPanel {
            }
         bCharge = true;
     }
+    
+   /* public void chargeListeTypeChambre(){
+        String sReq = "From Typechambre WHERE TCH_ID NOT IN(SELECT att_typechambre FROM Attribution WHERE att_etablissement = '"+sEtablissementId+"' )";
+        Query q = jfPrincipal.getSession().createQuery(sReq);
+        jCbListeType.removeAllItems();
+        Iterator typ = q.iterate();
+        while(typ.hasNext())
+           {
+           Typechambre unTypechambre = (Typechambre) typ.next();
+           jCbListeType.addItem(unTypechambre.getTchLibelle());
+           }
+        
+    }*/
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -172,6 +186,7 @@ public class jpHebergementConsult extends javax.swing.JPanel {
             Etablissement unEtablissement = (Etablissement) q.uniqueResult();
             sEtablissementId = unEtablissement.getEtaId();
             chargeTable(sEtablissementId);
+            //chargeListeTypeChambre();
             }
     }//GEN-LAST:event_jCbListeEtablissementActionPerformed
 

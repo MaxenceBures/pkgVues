@@ -101,7 +101,7 @@ public class jpTypeChambreAjout extends javax.swing.JPanel {
         Transaction tx = jfPrincipal.getSession().beginTransaction();
         jfPrincipal.getSession().save(unNewTypeChambre);
         tx.commit();
-        JOptionPane.showMessageDialog(null, "Nouveau type chambre ajouté avec succès !");
+        //JOptionPane.showMessageDialog(null, "Nouveau type chambre ajouté avec succès !");
     }//GEN-LAST:event_jbtnajoutActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
