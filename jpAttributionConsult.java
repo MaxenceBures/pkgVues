@@ -72,39 +72,8 @@ public class jpAttributionConsult extends javax.swing.JPanel {
         bCharge2 = true;
     }
 
-    private void chargeTable(){
-        int nbligne;
-        int i;
-        nbligne = jTblAttribution.getRowCount();
-        if(nbligne > 0)
-            {
-            for(i=0;i <nbligne; i++) {
-                ((DefaultTableModel)jTblAttribution.getModel()).removeRow(0);
-            }    
-        String sReq = "FROM Attribution WHERE ATT_GROUPE = '"+sGroupeId+"' AND ATT_ETABLISSEMENT = '"+sEtablissementId+"'";
-        Query q = jfPrincipal.getSession().createQuery(sReq);
-      // Attribution unAttribution = (Attribution) q.uniqueResult();
-       if(q.list().size() == 0){
-           jlbltest.setText("0");
-       }
-       if(q.list().size() == 1){
-           jlbltest.setText("1");
+   
            
-       }
-       if(q.list().size() > 1){
-           jlbltest.setText("2");
-           
-       }
-       
-       /* Iterator att = q.iterate();
-        while(att.hasNext()) {
-                Attribution unAttribution = (Attribution) att.next();
-                ((DefaultTableModel) jTblAttribution.getModel()).addRow(new Object[] {unAttribution.getId().getAttTypechambre(), unAttribution.getAttNbchambres()});
-
-        }   */
-            }
-    }
-    
    
     
     private void chargerEtablissement(String sEtablissement){
@@ -402,7 +371,39 @@ public class jpAttributionConsult extends javax.swing.JPanel {
         jfPrincipal.getSession().update (unAttribution);
         chargeTable();
     }//GEN-LAST:event_jbtModifierActionPerformed
+ private void chargeTable(){
+        int nbligne;
+        int i;
+        nbligne = jTblAttribution.getRowCount();
+        if(nbligne >= 0)
+            {
+            for(i=0;i <nbligne; i++) {
+                ((DefaultTableModel)jTblAttribution.getModel()).removeRow(0);
+            }    
+        String sReq = "FROM Attribution WHERE ATT_GROUPE = '"+sGroupeId+"' AND ATT_ETABLISSEMENT = '"+sEtablissementId+"'";
+        Query q = jfPrincipal.getSession().createQuery(sReq);
+      // Attribution unAttribution = (Attribution) q.uniqueResult();
+       if(q.list().size() == 0){
+           jlbltest.setText("0");
+       }
+       else{
 
+           jlbltest.setText("2");
+           Iterator att = q.iterate();
+           while(att.hasNext()) {
+                Attribution unAttribution = (Attribution) att.next();
+                ((DefaultTableModel) jTblAttribution.getModel()).addRow(new Object[] {unAttribution.getId().getAttTypechambre(), unAttribution.getAttNbchambres()});
+       
+                             }
+            }
+            }
+    }
+       /* Iterator att = q.iterate();
+        while(att.hasNext()) {
+                Attribution unAttribution = (Attribution) att.next();
+                ((DefaultTableModel) jTblAttribution.getModel()).addRow(new Object[] {unAttribution.getId().getAttTypechambre(), unAttribution.getAttNbchambres()});
+
+        }   */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
