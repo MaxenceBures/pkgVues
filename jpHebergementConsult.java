@@ -76,16 +76,6 @@ public class jpHebergementConsult extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(600, 600));
 
         jCbListeEtablissement.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jCbListeEtablissement.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jCbListeEtablissementMouseClicked(evt);
-            }
-        });
-        jCbListeEtablissement.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jCbListeEtablissementItemStateChanged(evt);
-            }
-        });
         jCbListeEtablissement.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCbListeEtablissementActionPerformed(evt);
@@ -123,13 +113,6 @@ public class jpHebergementConsult extends javax.swing.JPanel {
             jTblHebergement.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        jtxtModif.setText("jTextField1");
-        jtxtModif.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxtModifActionPerformed(evt);
-            }
-        });
-
         jlblQuantite.setText("Nombre Chambres");
 
         jbtnModif.setText("Modification");
@@ -156,10 +139,10 @@ public class jpHebergementConsult extends javax.swing.JPanel {
                         .addGap(45, 45, 45)
                         .addComponent(jlblQuantite)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jtxtModif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(123, 123, 123)
+                        .addComponent(jtxtModif, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58)
                         .addComponent(jbtnModif)))
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(166, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,14 +173,6 @@ public class jpHebergementConsult extends javax.swing.JPanel {
             }
     }//GEN-LAST:event_jCbListeEtablissementActionPerformed
 
-    private void jCbListeEtablissementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCbListeEtablissementMouseClicked
-            // TODO add your handling code here:
-    }//GEN-LAST:event_jCbListeEtablissementMouseClicked
-
-    private void jCbListeEtablissementItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCbListeEtablissementItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCbListeEtablissementItemStateChanged
-
     private void jTblHebergementMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblHebergementMouseClicked
         int ligne = jTblHebergement.getSelectedRow();
         Object celluleQuantite = jTblHebergement.getValueAt(ligne,2);
@@ -216,10 +191,6 @@ public class jpHebergementConsult extends javax.swing.JPanel {
         jfPrincipal.getSession().update (unOffre);
         chargeTable(sEtablissementId);
     }//GEN-LAST:event_jbtnModifActionPerformed
-
-    private void jtxtModifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtModifActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtxtModifActionPerformed
 
     private void chargeTable(String sEtablissementId){
         int nbligne;
