@@ -33,7 +33,8 @@ public class jpAttributionConsult extends javax.swing.JPanel {
      */
     public jpAttributionConsult() {
         initComponents();
-        jlblErreur.disable();
+       // jlblErreur.disable();
+        jlblErreur.isVisible();
         jtxtEtabRecap.disable();
         jtxtGroupeRecap.disable();
         jtxtTypeChambreRecap.disable();

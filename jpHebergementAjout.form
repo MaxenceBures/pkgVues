@@ -35,7 +35,7 @@
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Component id="jlblQuantite" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jtxtModif" min="-2" max="-2" attributes="0"/>
+              <Component id="jtxtModif" min="-2" pref="76" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -109,9 +109,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtxtModif">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtxtModifActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

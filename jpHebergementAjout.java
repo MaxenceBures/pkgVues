@@ -88,7 +88,11 @@ public class jpHebergementAjout extends javax.swing.JPanel {
 
         jlblQuantite.setText("Nombre Chambres");
 
-        jtxtModif.setText("jTextField1");
+        jtxtModif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxtModifActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -109,7 +113,7 @@ public class jpHebergementAjout extends javax.swing.JPanel {
                 .addGap(27, 27, 27)
                 .addComponent(jlblQuantite)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jtxtModif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jtxtModif, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -202,6 +206,10 @@ public class jpHebergementAjout extends javax.swing.JPanel {
        // tx.commit();
 
     }//GEN-LAST:event_jbtAjoutActionPerformed
+
+    private void jtxtModifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtModifActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxtModifActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
