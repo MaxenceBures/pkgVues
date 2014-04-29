@@ -26,7 +26,6 @@ public class jpAttributionConsult extends javax.swing.JPanel {
     private String sEtablissementId = "";
     private String sGroupeId = "";
     private String sTypeChambre = "";
-  //  private String sOffre = "" ;
 
     /**
      * Creates new form jpAttributionConsult
@@ -41,7 +40,7 @@ public class jpAttributionConsult extends javax.swing.JPanel {
         jtxtQuantiteLibre.disable();
         jlblAttribution.setText("<html>Sélectionner en premier un établissement,<br/> puis un groupe</html>");
     }
-
+        //Permet de reinitialiser les champs
      public void viderChamps() {
         jtxtEtabRecap.setText("");
         jtxtGroupeRecap.setText("");
@@ -51,11 +50,11 @@ public class jpAttributionConsult extends javax.swing.JPanel {
     }
     
     
-     
+        //Charge la liste deroulante des etablissements
     public void chargeListeEtablissement() {
+        jcmbEtablissement.removeAllItems();
         String sReq = "FROM Etablissement ORDER BY Eta_id ASC";
         Query q = jfPrincipal.getSession().createQuery(sReq);
-        jcmbEtablissement.removeAllItems();
         Iterator eta = q.iterate();
         while (eta.hasNext()) {
             Etablissement unEtablissement = (Etablissement) eta.next();
@@ -63,11 +62,11 @@ public class jpAttributionConsult extends javax.swing.JPanel {
         }
         bCharge = true;
     }
-
+        //Charge la liste deroulante des groupes /
     public void chargeListeGroupe() {
+        jcmbGroupe.removeAllItems();
         String sReq2 = "FROM Groupe ORDER BY Gp_id ASC ";
         Query q2 = jfPrincipal.getSession().createQuery(sReq2);
-        jcmbGroupe.removeAllItems();
         Iterator grp = q2.iterate();
         while (grp.hasNext()) {
             Groupe unGroupe = (Groupe) grp.next();
@@ -79,7 +78,7 @@ public class jpAttributionConsult extends javax.swing.JPanel {
    
            
    
-    
+        //Permet d'
     private void chargerEtablissement(String sEtablissement){
         String sReq = "From Etablissement Where Eta_Nom = ?";
         Query q = jfPrincipal.getSession().createQuery(sReq);

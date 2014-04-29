@@ -17,12 +17,10 @@ import pkgEntites.Etablissement;
  */
 public class jpEtablissementAjout extends javax.swing.JPanel {
 
-    Byte type = 3;
+    Byte bType = 3;
     String session;
    
-    /**
-     * Creates new form jpTest
-     */
+            //Chargement des listes deroulantes
     public jpEtablissementAjout() {
         initComponents();
         jcbccivil.removeAllItems();
@@ -71,19 +69,8 @@ public class jpEtablissementAjout extends javax.swing.JPanel {
         lbletablissement = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(600, 600));
-        addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                formFocusGained(evt);
-            }
-        });
 
         lblid.setText("Id");
-
-        jtxtid.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxtidActionPerformed(evt);
-            }
-        });
 
         lbladresse.setText("Adresse");
 
@@ -113,27 +100,11 @@ public class jpEtablissementAjout extends javax.swing.JPanel {
 
         lblnom.setText("Nom");
 
-        jtxtnom.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxtnomActionPerformed(evt);
-            }
-        });
-
         jcbccivil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jcbccivil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbccivilActionPerformed(evt);
-            }
-        });
 
         lblrespnom1.setText("Civilité");
 
         jcbctype.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jcbctype.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbctypeActionPerformed(evt);
-            }
-        });
 
         lbletablissement.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         lbletablissement.setText("Etablissement");
@@ -258,7 +229,7 @@ public class jpEtablissementAjout extends javax.swing.JPanel {
                 .addContainerGap(105, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+        //Recuperation des inputs dans l'objet unNouveauetablissement de type Etalissement / Ajout de cette objet dans la bdd.
     private void jbtAjoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtAjoutActionPerformed
     Etablissement unNouveauEtablissement = new Etablissement();
     unNouveauEtablissement.setEtaId(jtxtid.getText());
@@ -271,48 +242,27 @@ public class jpEtablissementAjout extends javax.swing.JPanel {
    
    if(jcbctype.getSelectedItem().toString() == "Ecole Publique")
     {
-        type = 0;
+        bType = 0;
     }
    else if(jcbctype.getSelectedItem().toString() == "Ecole Privée")
     {
-        type = 1;
+        bType = 1;
     }
    else if(jcbctype.getSelectedItem().toString() == "Autres")
     {
-        type = 2;
+        bType = 2;
     }
-   unNouveauEtablissement.setEtaType(type);
+   unNouveauEtablissement.setEtaType(bType);
    unNouveauEtablissement.setEtaNomresp(jtxtrespnom.getText());
    unNouveauEtablissement.setEtaPrenomresp(jtxtrespprenom.getText());
    unNouveauEtablissement.setEtaCivilresp(jcbccivil.getSelectedItem().toString());
    Transaction tx = jfPrincipal.getSession().beginTransaction();
-    jfPrincipal.getSession().save(unNouveauEtablissement);
-    tx.commit();
+   jfPrincipal.getSession().save(unNouveauEtablissement);
+   tx.commit();
   
       
     }//GEN-LAST:event_jbtAjoutActionPerformed
 
-    private void jcbccivilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbccivilActionPerformed
-    
-    // TODO add your handling code here:
-    }//GEN-LAST:event_jcbccivilActionPerformed
-
-    private void jcbctypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbctypeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcbctypeActionPerformed
-
-
-    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formFocusGained
-
-    private void jtxtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtidActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtxtidActionPerformed
-
-    private void jtxtnomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtnomActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtxtnomActionPerformed
 
 
 

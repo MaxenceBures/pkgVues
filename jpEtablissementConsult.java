@@ -20,10 +20,7 @@ import pkgEntites.Etablissement;
  */
 public class jpEtablissementConsult extends javax.swing.JPanel {
    
-//Session session = HibernateUtil.getSessionFactory().openSession();
-    /**
-     * Creates new form jpEtablissementConsult
-     */
+            //Chargement des listes deroulantes
     public jpEtablissementConsult() {
         initComponents();
         jcbccivil.removeAllItems();
@@ -77,16 +74,6 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
         jbtnSupp = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(600, 600));
-        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                formMouseMoved(evt);
-            }
-        });
-        addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                formFocusGained(evt);
-            }
-        });
 
         lblconsult.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         lblconsult.setText("Consultation/Modification");
@@ -138,11 +125,6 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
         lblnom.setText("Nom");
 
         jcbctype.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jcbctype.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbctypeActionPerformed(evt);
-            }
-        });
 
         lbletablissement.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         lbletablissement.setText("Etablissement");
@@ -150,11 +132,6 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
         lblville.setText("Ville");
 
         jcbccivil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jcbccivil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbccivilActionPerformed(evt);
-            }
-        });
 
         lblcp.setText("Code Postal");
 
@@ -313,9 +290,10 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
                 .addGap(46, 46, 46))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+        //Recuperation des données concernant l'etablissement choisi à partir de son identifiant, afin de prechargé les champs de modifs
+        //Enregistrement de la modif dans la bdd, puis rechargement du tableau afin de pouvoir afficher les modifs
     private void jbtnModifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnModifActionPerformed
-        Byte type = 3;
+        Byte bType = 3;
         String sReq = "from Etablissement Where Eta_Id = ?";
         Query q = jfPrincipal.getSession().createQuery(sReq);
         q.setParameter(0, jtxtid.getText());
@@ -329,17 +307,17 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
 
            if(jcbctype.getSelectedItem().toString() == "Ecole Publique")
             {
-                type = 0;
+                bType = 0;
             }
            else if(jcbctype.getSelectedItem().toString() == "Ecole Privée")
             {
-                type = 1;
+                bType = 1;
             }
            else if(jcbctype.getSelectedItem().toString() == "Autres")
             {
-                type = 2;
+                bType = 2;
             }
-           unEtablissement.setEtaType(type);
+           unEtablissement.setEtaType(bType);
            unEtablissement.setEtaNomresp(jtxtrespnom.getText());
            unEtablissement.setEtaPrenomresp(jtxtrespprenom.getText());
            unEtablissement.setEtaCivilresp(jcbccivil.getSelectedItem().toString());
@@ -347,55 +325,29 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
            tx.commit();
            jfPrincipal.getSession().update (unEtablissement);
            chargerTable();
-        // txatest.setText(sResultat);
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_jbtnModifActionPerformed
-
+        //Permet de recuperer l'identifiant de la ligne selectionnée
     private void tblconsultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblconsultMouseClicked
-        int ligne = tblconsult.getSelectedRow();//Si tu veut la ligne selectionnée
+        int ligne = tblconsult.getSelectedRow();
         Object cellule = tblconsult.getValueAt(ligne,0);
-       String result = cellule.toString();
-      // result = 
-       // System.out.println(result);
-                
         chargerChamps(cellule);
-       // chargerTable();
         
                 // TODO add your handling code here:
     }//GEN-LAST:event_tblconsultMouseClicked
-
-    private void jcbctypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbctypeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcbctypeActionPerformed
-
-    private void jcbccivilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbccivilActionPerformed
-
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jcbccivilActionPerformed
-
-    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
-          // TODO add your handling code here:
-    }//GEN-LAST:event_formFocusGained
-
-    private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
-  
-                // TODO add your handling code here:
-    }//GEN-LAST:event_formMouseMoved
-
+        //Suppresion de l'etablissement selectionné / Rechargement du table afin de ne plus afficher l'etablissement supprimé 
     private void jbtnSuppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSuppActionPerformed
-           String sReq = "FROM Etablissement WHERE eta_id = ?";
+        String sReq = "FROM Etablissement WHERE eta_id = ?";
         Query q = jfPrincipal.getSession().createQuery(sReq);
         q.setParameter(0, jtxtid.getText());
-        
         Etablissement unEtablissement = (Etablissement) q.uniqueResult();
         jfPrincipal.getSession().delete(unEtablissement);
-        
         Transaction tx = jfPrincipal.getSession().beginTransaction();
         tx.commit();
         jfPrincipal.getSession().update(unEtablissement);
-        
         chargerTable();        // TODO add your handling code here:
     }//GEN-LAST:event_jbtnSuppActionPerformed
+        //Permet de charger les champs lorsque l'on a selectionné un etablissement
     private void chargerChamps(Object cellule){
         String sReq = "From Etablissement Where Eta_Id = ?";
         Query q = jfPrincipal.getSession().createQuery(sReq);
@@ -412,15 +364,13 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
         jtxtrespprenom.setText(unEtablissement.getEtaPrenomresp());
 
     }
-    
-    public void chargerTable(){
-        
-      
-       int nbligne;
+        //Permet de charger les etablissements dans le tableau
+    public void chargerTable(){ 
+       int iNbligne;
        int i;
-        nbligne = tblconsult.getRowCount();
-        if(nbligne > 0){
-            for(i=0;i <nbligne; i++){
+       iNbligne = tblconsult.getRowCount();
+        if(iNbligne > 0){
+            for(i=0;i <iNbligne; i++){
                 ((DefaultTableModel)tblconsult.getModel()).removeRow(0);
             }
         String sReq = "FROM Etablissement";

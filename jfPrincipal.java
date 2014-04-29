@@ -16,20 +16,20 @@ import pkgEntites.HibernateUtil;
  * @author Maxence
  */
 public class jfPrincipal extends javax.swing.JFrame {
+        //Declaration et initialisation des sessions
    private  static Session session = HibernateUtil.getSessionFactory().openSession();
+   
+        //Declaration des panels
    protected jpEtablissementAjout pnlEtablissementAjout = new jpEtablissementAjout();
    protected jpEtablissementConsult pnlEtablissementConsult = new jpEtablissementConsult();
    protected jpTypeChambreAjout pnlTypeChambreAjout = new jpTypeChambreAjout();
    protected jpTypeChambreConsult pnlTypeChambreConsult = new jpTypeChambreConsult();
    protected jpHebergementConsult pnlHebergementConsult = new jpHebergementConsult();
-   //protected jpHebergementAjout pnlHebergementAjout = new jpHebergementAjout();
    protected jpAttributionConsult pnlAttributionConsult = new jpAttributionConsult();
    protected jpAccueil pnlAccueil  = new jpAccueil();
-   private Container pnlPrinc = null;
-    /**
-     * Creates new form jfPrincipal
-     */
-    public jfPrincipal() {
+  // private Container pnlPrincipal = null;
+
+   public jfPrincipal() {
         initComponents();
         this.setContentPane(pnlAccueil);
         pack();
@@ -56,7 +56,6 @@ public class jfPrincipal extends javax.swing.JFrame {
         jmniChambresAjout = new javax.swing.JMenuItem();
         jmHebergement = new javax.swing.JMenu();
         jmniHebergementConsulter = new javax.swing.JMenuItem();
-        jmniHebergementAjout = new javax.swing.JMenuItem();
         jmAttribution = new javax.swing.JMenu();
         jmniAttributionConsulter = new javax.swing.JMenuItem();
         jmniAttributionAjout = new javax.swing.JMenuItem();
@@ -85,11 +84,6 @@ public class jfPrincipal extends javax.swing.JFrame {
         jmbTop.add(jmAccueil);
 
         jmEtablissement.setText("Etablissements");
-        jmEtablissement.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmEtablissementActionPerformed(evt);
-            }
-        });
 
         jmniEtablissementConsulter.setText("Consulter");
         jmniEtablissementConsulter.addActionListener(new java.awt.event.ActionListener() {
@@ -100,11 +94,6 @@ public class jfPrincipal extends javax.swing.JFrame {
         jmEtablissement.add(jmniEtablissementConsulter);
 
         jmniEtablissementAjout.setText("Ajouter");
-        jmniEtablissementAjout.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jmniEtablissementAjoutMouseClicked(evt);
-            }
-        });
         jmniEtablissementAjout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmniEtablissementAjoutActionPerformed(evt);
@@ -144,14 +133,6 @@ public class jfPrincipal extends javax.swing.JFrame {
         });
         jmHebergement.add(jmniHebergementConsulter);
 
-        jmniHebergementAjout.setText("Ajouter");
-        jmniHebergementAjout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmniHebergementAjoutActionPerformed(evt);
-            }
-        });
-        jmHebergement.add(jmniHebergementAjout);
-
         jmbTop.add(jmHebergement);
 
         jmAttribution.setText("Attribution");
@@ -165,11 +146,6 @@ public class jfPrincipal extends javax.swing.JFrame {
         jmAttribution.add(jmniAttributionConsulter);
 
         jmniAttributionAjout.setText("Ajouter");
-        jmniAttributionAjout.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmniAttributionAjoutActionPerformed(evt);
-            }
-        });
         jmAttribution.add(jmniAttributionAjout);
 
         jmbTop.add(jmAttribution);
@@ -189,6 +165,7 @@ public class jfPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+   
     public static Session getSession(){
         return session;
     }
@@ -196,39 +173,40 @@ public class jfPrincipal extends javax.swing.JFrame {
     public static void setSession(Session psession){
         jfPrincipal.session=psession;
     }
+        //Fermeture de session, puis de l'application
     private void jmniQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmniQuitterActionPerformed
         getSession().close();
         System.exit(0);
     }//GEN-LAST:event_jmniQuitterActionPerformed
-
+        //Affichage du panel permettant de consulter les Etablissements / Chargement des etablissements dans le tableau
     private void jmniEtablissementConsulterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmniEtablissementConsulterActionPerformed
         this.setContentPane(pnlEtablissementConsult);
         pnlEtablissementConsult.chargerTable();
         pack();
     }//GEN-LAST:event_jmniEtablissementConsulterActionPerformed
-
+        //Affichage du panel permettant l'ajout d'un etablissement
     private void jmniEtablissementAjoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmniEtablissementAjoutActionPerformed
         this.setContentPane(pnlEtablissementAjout);
         pack();
     }//GEN-LAST:event_jmniEtablissementAjoutActionPerformed
-
+        //Affichage du panel permettant de consulter les types de chambres / Chargement des types de chambres dans le tableau
     private void jmniChambresConsulterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmniChambresConsulterActionPerformed
         this.setContentPane(pnlTypeChambreConsult);
         pnlTypeChambreConsult.chargerTable();
         pack();
     }//GEN-LAST:event_jmniChambresConsulterActionPerformed
-
+        //Affichage du panel permettant d'ajouter un type de chambre
     private void jmniChambresAjoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmniChambresAjoutActionPerformed
         this.setContentPane(pnlTypeChambreAjout);
         pack();
     }//GEN-LAST:event_jmniChambresAjoutActionPerformed
-
+        //Affichage du panel permettant de consulter les offres d'hebergements/ Chargement des etablissements dans la liste deroulante
     private void jmniHebergementConsulterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmniHebergementConsulterActionPerformed
         this.setContentPane(pnlHebergementConsult);
         pnlHebergementConsult.chargeListe();
         pack();
     }//GEN-LAST:event_jmniHebergementConsulterActionPerformed
-
+        //Affichage du panel permettant de consulter l'attribution des chambres/ Chargement des etablissements et des groupes dans les listes deroulante
     private void jmniAttributionConsulterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmniAttributionConsulterActionPerformed
         this.setContentPane(pnlAttributionConsult);
         pnlAttributionConsult.chargeListeEtablissement();
@@ -236,34 +214,9 @@ public class jfPrincipal extends javax.swing.JFrame {
         pack();
     }//GEN-LAST:event_jmniAttributionConsulterActionPerformed
 
-    private void jmniAttributionAjoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmniAttributionAjoutActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jmniAttributionAjoutActionPerformed
-
-    private void jmniEtablissementAjoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmniEtablissementAjoutMouseClicked
- /*if( pnlPrinc == null){
-     pnlPrinc = this.getContentPane();
- }
- else {
-     this.setContentPane(pnlPrinc);
- }*/
- // TODO add your handling code here:
-    }//GEN-LAST:event_jmniEtablissementAjoutMouseClicked
-
-    private void jmEtablissementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmEtablissementActionPerformed
-  
-    }//GEN-LAST:event_jmEtablissementActionPerformed
-
     private void jmniProposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmniProposActionPerformed
          JOptionPane.showMessageDialog(null, "Boisgontier Chloé \nBures Maxence");   // TODO add your handling code here:
     }//GEN-LAST:event_jmniProposActionPerformed
-
-    private void jmniHebergementAjoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmniHebergementAjoutActionPerformed
-      /*  this.setContentPane(pnlHebergementAjout);
-        pnlHebergementAjout.chargeListeEtablissement();
-        pnlHebergementAjout.chargeListeTypeChambre();
-        pack();        // TODO add your handling code here:*/
-    }//GEN-LAST:event_jmniHebergementAjoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -313,7 +266,6 @@ public class jfPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmniChambresConsulter;
     private javax.swing.JMenuItem jmniEtablissementAjout;
     private javax.swing.JMenuItem jmniEtablissementConsulter;
-    private javax.swing.JMenuItem jmniHebergementAjout;
     private javax.swing.JMenuItem jmniHebergementConsulter;
     private javax.swing.JMenuItem jmniPropos;
     private javax.swing.JMenuItem jmniQuitter;

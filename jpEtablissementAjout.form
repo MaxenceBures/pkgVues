@@ -6,9 +6,6 @@
       <Dimension value="[600, 600]"/>
     </Property>
   </Properties>
-  <Events>
-    <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="formFocusGained"/>
-  </Events>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -182,9 +179,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtxtid">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtxtidActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lbladresse">
       <Properties>
@@ -262,9 +256,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtxtnom">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtxtnomActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JComboBox" name="jcbccivil">
       <Properties>
@@ -277,9 +268,6 @@
           </StringArray>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcbccivilActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblrespnom1">
       <Properties>
@@ -297,9 +285,6 @@
           </StringArray>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcbctypeActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lbletablissement">
       <Properties>

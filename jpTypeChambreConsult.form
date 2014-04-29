@@ -110,9 +110,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtxtid">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtxtidActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jtxtlibelle">
     </Component>

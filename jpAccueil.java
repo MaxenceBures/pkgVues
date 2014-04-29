@@ -12,9 +12,7 @@ package pkgVues;
  */
 public class jpAccueil extends javax.swing.JPanel {
 
-    /**
-     * Creates new form jpAccueil
-     */
+        //Modification de la valeur du label lblPresentation
     public jpAccueil() {
         initComponents();
         lblPresentation.setText("<html>Cette application permet de gérer l'hébergement des <br/>groupes de musique durant le festival Folklores du Monde</html>");

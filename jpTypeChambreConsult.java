@@ -15,10 +15,7 @@ import pkgEntites.Typechambre;
  * @author Chloé
  */
 public class jpTypeChambreConsult extends javax.swing.JPanel {
-//Session session = HibernateUtil.getSessionFactory().openSession();
-    /**
-     * Creates new form jpTypeChambreConsult
-     */
+
     public jpTypeChambreConsult() {
         initComponents();
         jtxtid.disable();
@@ -55,12 +52,6 @@ public class jpTypeChambreConsult extends javax.swing.JPanel {
         lblid.setText("Id");
 
         lbllibelle.setText("Libellé");
-
-        jtxtid.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtxtidActionPerformed(evt);
-            }
-        });
 
         jbtnModif.setText("Modifier");
         jbtnModif.addActionListener(new java.awt.event.ActionListener() {
@@ -159,11 +150,8 @@ public class jpTypeChambreConsult extends javax.swing.JPanel {
                 .addGap(75, 75, 75))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jtxtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtidActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtxtidActionPerformed
-
+        //Recuperation des données concernant le type de chambre choisi à partir de son identifiant, afin de prechargé les champs de modifs
+        //Enregistrement de la modif dans la bdd, puis rechargement du tableau afin de pouvoir afficher les modifs
     private void jbtnModifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnModifActionPerformed
         // TODO add your handling code here:
         String sReq = "FROM Typechambre WHERE TCh_Id = ?";
@@ -179,17 +167,15 @@ public class jpTypeChambreConsult extends javax.swing.JPanel {
         //JOptionPane.showMessageDialog(null, "Type chambre modifié avec succès !");      
         chargerTable();
     }//GEN-LAST:event_jbtnModifActionPerformed
-
+        //Permet de recuperer l'identifiant de la ligne selectionnée
     private void tblconsultMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblconsultMouseClicked
         // TODO add your handling code here:
-        int ligne = tblconsult.getSelectedRow();//Si tu veux la ligne selectionnée
+        int ligne = tblconsult.getSelectedRow();
         Object cellule = tblconsult.getValueAt(ligne,0);
-        //String result = cellule.toString();
-
         chargerChamps(cellule);
        
     }//GEN-LAST:event_tblconsultMouseClicked
-
+        //Suppresion dy type de chambre selectionné / Rechargement du table afin de ne plus afficher le type supprimé 
     private void jbtnSupprActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSupprActionPerformed
         // TODO add your handling code here:
         String sReq = "FROM Typechambre WHERE TCh_Id = ?";
@@ -205,7 +191,7 @@ public class jpTypeChambreConsult extends javax.swing.JPanel {
         //JOptionPane.showMessageDialog(null, "Type chambre supprimé avec succès !");
         chargerTable() ;
     }//GEN-LAST:event_jbtnSupprActionPerformed
-
+        //Permet de charger les champs lorsque l'on a selectionné un type de chambre
     private void chargerChamps(Object cellule){
         String sReq = "FROM Typechambre WHERE TCh_Id = ?";
         Query q = jfPrincipal.getSession().createQuery(sReq);
@@ -214,7 +200,7 @@ public class jpTypeChambreConsult extends javax.swing.JPanel {
         jtxtid.setText(unTypeChambre.getTchId());
         jtxtlibelle.setText(unTypeChambre.getTchLibelle());
     }
-    
+        //Permet de charger les types de chambres dans le tableau
     public void chargerTable(){
  
         int nbligne;

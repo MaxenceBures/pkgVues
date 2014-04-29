@@ -91,10 +91,9 @@ public class jpTypeChambreAjout extends javax.swing.JPanel {
                 .addContainerGap(89, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+         //Recuperation des inputs dans l'objet unNewTypeChambre de type TypeChambre / Ajout de cette objet dans la bdd.
     private void jbtnajoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnajoutActionPerformed
         // TODO add your handling code here:
-      //  Session session = HibernateUtil.getSessionFactory().openSession();
         Typechambre unNewTypeChambre = new Typechambre();
         unNewTypeChambre.setTchId(jtxtid.getText());
         unNewTypeChambre.setTchLibelle(jtxtlibelle.getText());
