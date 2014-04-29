@@ -78,22 +78,24 @@ public class jpAttributionConsult extends javax.swing.JPanel {
    
            
    
-        //Permet d'
-    private void chargerEtablissement(String sEtablissement){
+        //Fait un traitement pour obtenir une info que l'on a deja
+    /*private void chargerEtablissement(String sEtablissement){
         String sReq = "From Etablissement Where Eta_Nom = ?";
         Query q = jfPrincipal.getSession().createQuery(sReq);
         q.setParameter(0, sEtablissement);
         Etablissement unEtablissement = (Etablissement) q.uniqueResult();
         jtxtEtabRecap.setText(unEtablissement.getEtaNom());
-    }
-    
-    private void chargerGroupe(String sGroupe){
+        jtxtEtabRecap.setText(sEtablissement);
+    }*/
+        //Fait un traitement pour obtenir une info que l'on a deja
+   /* private void chargerGroupe(String sGroupe){
         String sReq = "From Groupe Where Gp_Nom = ?";
         Query q = jfPrincipal.getSession().createQuery(sReq);
         q.setParameter(0, sGroupe);
         Groupe unGroupe = (Groupe) q.uniqueResult();
         jtxtGroupeRecap.setText(unGroupe.getGpNom());
-    }
+        jtxtGroupeRecap.setText(sGroupe);
+    }*/
     
     private void chargerChambre(String sChambre){
         String sReq = "From Typechambre Where Tch_Id = ?";
@@ -344,8 +346,10 @@ public class jpAttributionConsult extends javax.swing.JPanel {
         Object celluleType = jTblAttribution.getValueAt(ligne, 0);
         sTypeChambre = celluleType.toString();
         jtxtQuantite.setText(celluleQuantite.toString());
-        chargerEtablissement(jcmbEtablissement.getSelectedItem().toString());
-        chargerGroupe(jcmbGroupe.getSelectedItem().toString());
+        jtxtGroupeRecap.setText(jcmbGroupe.getSelectedItem().toString());
+        jtxtEtabRecap.setText(jcmbEtablissement.getSelectedItem().toString());
+        //chargerEtablissement(jcmbEtablissement.getSelectedItem().toString());
+        //chargerGroupe(jcmbGroupe.getSelectedItem().toString());
         chargerChambre(celluleType.toString());
         chargerQuantite(sEtablissementId, sTypeChambre);
     }//GEN-LAST:event_jTblAttributionMouseClicked
