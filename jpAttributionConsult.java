@@ -74,28 +74,7 @@ public class jpAttributionConsult extends javax.swing.JPanel {
         }
         bCharge2 = true;
     }
-
-   
-           
-   
-        //Fait un traitement pour obtenir une info que l'on a deja
-    /*private void chargerEtablissement(String sEtablissement){
-        String sReq = "From Etablissement Where Eta_Nom = ?";
-        Query q = jfPrincipal.getSession().createQuery(sReq);
-        q.setParameter(0, sEtablissement);
-        Etablissement unEtablissement = (Etablissement) q.uniqueResult();
-        jtxtEtabRecap.setText(unEtablissement.getEtaNom());
-        jtxtEtabRecap.setText(sEtablissement);
-    }*/
-        //Fait un traitement pour obtenir une info que l'on a deja 
-   /* private void chargerGroupe(String sGroupe){
-        String sReq = "From Groupe Where Gp_Nom = ?";
-        Query q = jfPrincipal.getSession().createQuery(sReq);
-        q.setParameter(0, sGroupe);
-        Groupe unGroupe = (Groupe) q.uniqueResult();
-        jtxtGroupeRecap.setText(unGroupe.getGpNom());
-        jtxtGroupeRecap.setText(sGroupe);
-    }*/
+          
         //Permet de recuperer le nom d'un type de chambre à partir de son identifiant
     private void chargerChambre(String sChambre){
         String sReq = "From Typechambre Where Tch_Id = ?";
@@ -366,7 +345,7 @@ public class jpAttributionConsult extends javax.swing.JPanel {
             //test();
         }
     }//GEN-LAST:event_jcmbGroupeActionPerformed
-
+        //Permet de modifier la quantite de reservée à partir de l'etablissement, du groupe et du type de chambre
     private void jbtModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtModifierActionPerformed
         String sReq = "FROM Attribution WHERE Att_Etablissement = '"+sEtablissementId+"' AND Att_Groupe = '"+sGroupeId+"' AND Att_Typechambre = '"+sTypeChambre+"'";
         Query q = jfPrincipal.getSession().createQuery(sReq);
@@ -378,22 +357,21 @@ public class jpAttributionConsult extends javax.swing.JPanel {
         chargeTable();
         chargerQuantite(sEtablissementId, sTypeChambre);
     }//GEN-LAST:event_jbtModifierActionPerformed
-    
+        //Permet d'afficher les reservations d'un groupe pour un etablissement dans le tableau
     private void chargeTable(){
-       // jlblErreur.disable();
         jlblErreur.setVisible(false);
-        int nbligne;
+        int iNbligne;
         int i;
-        nbligne = jTblAttribution.getRowCount();
-        if(nbligne >= 0)
+        iNbligne = jTblAttribution.getRowCount();
+        if(iNbligne >= 0)
             {
-            for(i=0;i <nbligne; i++) {
+            for(i=0;i <iNbligne; i++) {
                 ((DefaultTableModel)jTblAttribution.getModel()).removeRow(0);
             }    
         String sReq = "FROM Attribution WHERE ATT_GROUPE = '"+sGroupeId+"' AND ATT_ETABLISSEMENT = '"+sEtablissementId+"'";
         Query q = jfPrincipal.getSession().createQuery(sReq);
                 if (q.list().size() == 0) {
-                   //jlblErreur.enable();
+                   
                     jlblErreur.setVisible(true);
                     } 
                 else {
