@@ -87,7 +87,7 @@ public class jpAttributionConsult extends javax.swing.JPanel {
         jtxtEtabRecap.setText(unEtablissement.getEtaNom());
         jtxtEtabRecap.setText(sEtablissement);
     }*/
-        //Fait un traitement pour obtenir une info que l'on a deja
+        //Fait un traitement pour obtenir une info que l'on a deja 
    /* private void chargerGroupe(String sGroupe){
         String sReq = "From Groupe Where Gp_Nom = ?";
         Query q = jfPrincipal.getSession().createQuery(sReq);
@@ -96,7 +96,7 @@ public class jpAttributionConsult extends javax.swing.JPanel {
         jtxtGroupeRecap.setText(unGroupe.getGpNom());
         jtxtGroupeRecap.setText(sGroupe);
     }*/
-    
+        //Permet de recuperer le nom d'un type de chambre à partir de son identifiant
     private void chargerChambre(String sChambre){
         String sReq = "From Typechambre Where Tch_Id = ?";
         Query q = jfPrincipal.getSession().createQuery(sReq);
@@ -104,9 +104,9 @@ public class jpAttributionConsult extends javax.swing.JPanel {
         Typechambre unTypechambre = (Typechambre) q.uniqueResult();
         jtxtTypeChambreRecap.setText(unTypechambre.getTchLibelle());
     }
-    
+        //Permet d'afficher la quantite de chambre restante dans un label
      private void chargerQuantite(String sEtablissement, String sTypeChambre){
-        int value = 0;
+        int iValue = 0;
         String sReq = "From Offre Where OFF_ETABLISSEMENT = '"+sEtablissement+"' AND OFF_TYPECHAMBRE = '"+sTypeChambre+"'";
         Query q = jfPrincipal.getSession().createQuery(sReq);
         String sReq2 = "From Attribution Where ATT_ETABLISSEMENT = '"+sEtablissement+"' AND ATT_TYPECHAMBRE = '"+sTypeChambre+"'";
@@ -116,11 +116,11 @@ public class jpAttributionConsult extends javax.swing.JPanel {
          Iterator att = q2.iterate();
         while(att.hasNext()) {
                 Attribution unAttribution2 = (Attribution) att.next();
-               value += unAttribution2.getAttNbchambres();
+               iValue += unAttribution2.getAttNbchambres();
                 }   
         
-        int result = unOffre.getOffNbchambres() - value;
-        jtxtQuantiteLibre.setText(String.valueOf(result));
+        int iResult = unOffre.getOffNbchambres() - iValue;
+        jtxtQuantiteLibre.setText(String.valueOf(iResult));
     }
 
     /**
@@ -328,7 +328,7 @@ public class jpAttributionConsult extends javax.swing.JPanel {
                 .addGap(43, 43, 43))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+        //Permet de recuperer l'identifiant à partir d'un nom d'etablissement
     private void jcmbEtablissementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbEtablissementActionPerformed
         if (bCharge) {
             viderChamps();
@@ -339,7 +339,7 @@ public class jpAttributionConsult extends javax.swing.JPanel {
             sEtablissementId = unEtablissement.getEtaId();
         }
     }//GEN-LAST:event_jcmbEtablissementActionPerformed
-
+        //Effectue un recapitulatif dans les inputs en bas de pages
     private void jTblAttributionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTblAttributionMouseClicked
         int ligne = jTblAttribution.getSelectedRow();
         Object celluleQuantite = jTblAttribution.getValueAt(ligne, 1);
@@ -353,7 +353,7 @@ public class jpAttributionConsult extends javax.swing.JPanel {
         chargerChambre(celluleType.toString());
         chargerQuantite(sEtablissementId, sTypeChambre);
     }//GEN-LAST:event_jTblAttributionMouseClicked
-
+        //Permet de recuperer l'identifiant d'un groupe à partir de son nom
     private void jcmbGroupeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbGroupeActionPerformed
         if (bCharge2) {
             viderChamps();
