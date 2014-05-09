@@ -26,6 +26,7 @@ public class jfPrincipal extends javax.swing.JFrame {
    protected jpTypeChambreConsult pnlTypeChambreConsult = new jpTypeChambreConsult();
    protected jpHebergementConsult pnlHebergementConsult = new jpHebergementConsult();
    protected jpAttributionConsult pnlAttributionConsult = new jpAttributionConsult();
+   protected jpAttributionAjout pnlAttributionAjout = new jpAttributionAjout();
    protected jpAccueil pnlAccueil  = new jpAccueil();
   // private Container pnlPrincipal = null;
 
@@ -146,6 +147,11 @@ public class jfPrincipal extends javax.swing.JFrame {
         jmAttribution.add(jmniAttributionConsulter);
 
         jmniAttributionAjout.setText("Ajouter");
+        jmniAttributionAjout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmniAttributionAjoutActionPerformed(evt);
+            }
+        });
         jmAttribution.add(jmniAttributionAjout);
 
         jmbTop.add(jmAttribution);
@@ -217,6 +223,13 @@ public class jfPrincipal extends javax.swing.JFrame {
     private void jmniProposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmniProposActionPerformed
          JOptionPane.showMessageDialog(null, "Boisgontier Chloé \nBures Maxence");   // TODO add your handling code here:
     }//GEN-LAST:event_jmniProposActionPerformed
+
+    private void jmniAttributionAjoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmniAttributionAjoutActionPerformed
+       this.setContentPane(pnlAttributionAjout);
+        pnlAttributionAjout.chargeListes();
+       //pnlAttributionConsult.chargeListeGroupe();
+        pack();
+    }//GEN-LAST:event_jmniAttributionAjoutActionPerformed
 
     /**
      * @param args the command line arguments
