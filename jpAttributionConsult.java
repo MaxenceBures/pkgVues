@@ -349,11 +349,14 @@ public class jpAttributionConsult extends javax.swing.JPanel {
     private void jbtModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtModifierActionPerformed
         String sReq = "FROM Attribution WHERE Att_Etablissement = '"+sEtablissementId+"' AND Att_Groupe = '"+sGroupeId+"' AND Att_Typechambre = '"+sTypeChambre+"'";
         Query q = jfPrincipal.getSession().createQuery(sReq);
+       /* q.setParameter(0, sEtablissementId);
+        q.setParameter(1, sGroupeId);
+        q.setParameter(2, sTypeChambre)*/
         Attribution unAttribution = (Attribution) q.uniqueResult();
         unAttribution.setAttNbchambres(Byte.parseByte(jtxtQuantite.getText()));
         Transaction tx = jfPrincipal.getSession().beginTransaction();
-        tx.commit();
         jfPrincipal.getSession().update (unAttribution);
+        tx.commit();
         chargeTable();
         chargerQuantite(sEtablissementId, sTypeChambre);
     }//GEN-LAST:event_jbtModifierActionPerformed
