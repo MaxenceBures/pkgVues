@@ -263,10 +263,16 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtxtEtabRecap">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtxtEtabRecapActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jtxtGroupeRecap">
     </Component>
     <Component class="javax.swing.JTextField" name="jtxtTypeChambreRecap">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtxtTypeChambreRecapActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jlblAttribution">
       <Properties>

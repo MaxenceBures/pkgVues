@@ -92,11 +92,11 @@ public class jpAttributionConsult extends javax.swing.JPanel {
         Query q2 = jfPrincipal.getSession().createQuery(sReq2);
         Offre unOffre = (Offre) q.uniqueResult();
       
-         Iterator att = q2.iterate();
+        Iterator att = q2.iterate();
         while(att.hasNext()) {
-                Attribution unAttribution2 = (Attribution) att.next();
-               iValue += unAttribution2.getAttNbchambres();
-                }   
+            Attribution unAttribution2 = (Attribution) att.next();
+            iValue += unAttribution2.getAttNbchambres();
+        }   
         
         int iResult = unOffre.getOffNbchambres() - iValue;
         jtxtQuantiteLibre.setText(String.valueOf(iResult));
@@ -198,6 +198,18 @@ public class jpAttributionConsult extends javax.swing.JPanel {
         jlblGroupeRecap.setText("Groupe");
 
         jlblTypeChambreRecap.setText("Type Chambre");
+
+        jtxtEtabRecap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxtEtabRecapActionPerformed(evt);
+            }
+        });
+
+        jtxtTypeChambreRecap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxtTypeChambreRecapActionPerformed(evt);
+            }
+        });
 
         jlblAttribution.setText("Selectionner en premier un etablissement, puis un groupe");
 
@@ -360,6 +372,14 @@ public class jpAttributionConsult extends javax.swing.JPanel {
         chargeTable();
         chargerQuantite(sEtablissementId, sTypeChambre);
     }//GEN-LAST:event_jbtModifierActionPerformed
+
+    private void jtxtTypeChambreRecapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtTypeChambreRecapActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxtTypeChambreRecapActionPerformed
+
+    private void jtxtEtabRecapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtEtabRecapActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxtEtabRecapActionPerformed
         //Permet d'afficher les reservations d'un groupe pour un etablissement dans le tableau
     private void chargeTable(){
         jlblErreur.setVisible(false);
