@@ -21,8 +21,8 @@ import pkgEntites.Typechambre;
  */
 public class jpAttributionConsult extends javax.swing.JPanel {
 
-    private boolean bCharge = false;
-    private boolean bCharge2 = false;
+  static  private boolean bCharge = false;
+  static  private boolean bCharge2 = false;
     private String sEtablissementId = "";
     private String sGroupeId = "";
     private String sTypeChambre = "";

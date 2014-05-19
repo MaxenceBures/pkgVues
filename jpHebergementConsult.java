@@ -19,7 +19,7 @@ import pkgEntites.Offre;
  */
 public class jpHebergementConsult extends javax.swing.JPanel {
         
-    private boolean bCharge = false;
+  static  private boolean bCharge = false;
     private String sEtablissementId = "";
     private String sChambresId = "";
     

@@ -23,8 +23,8 @@ import pkgEntites.Typechambre;
  */
 public class jpAttributionAjout extends javax.swing.JPanel {
     
-    Boolean bCharge = false;
-    Boolean bCharge2 = false;
+   static Boolean bCharge = false;
+   static Boolean bCharge2 = false;
     private String sEtablissementId = "";
     private String sGroupeId = "";
     private String sTypeChambreId = "";
