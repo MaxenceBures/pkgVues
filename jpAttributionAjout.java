@@ -329,7 +329,7 @@ public class jpAttributionAjout extends javax.swing.JPanel {
     private void chargerQuantite(){
         int iValue = 0;
         
-         JOptionPane.showMessageDialog(null, "'"+sEtablissementId+"' \n'"+sTypeChambreId+"'");
+        
         
         String sReq = "From Offre Where OFF_ETABLISSEMENT = '"+sEtablissementId+"' AND OFF_TYPECHAMBRE = '"+sTypeChambreId+"'";
         Query q = jfPrincipal.getSession().createQuery(sReq);
