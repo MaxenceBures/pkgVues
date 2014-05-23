@@ -119,7 +119,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="21" max="32767" attributes="0"/>
+              <EmptySpace pref="28" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -127,11 +127,11 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="lblconsult" max="32767" attributes="0"/>
+              <Component id="lblconsult" pref="48" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="96" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-              <Component id="lbletablissement" max="32767" attributes="0"/>
+              <Component id="lbletablissement" pref="49" max="32767" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
@@ -169,7 +169,7 @@
                   <Component id="jcbctype" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-              <Component id="lblresponsable" max="32767" attributes="0"/>
+              <Component id="lblresponsable" pref="49" max="32767" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblrespnom1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -183,12 +183,12 @@
                   <Component id="lblrespprenom" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jtxtrespprenom" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jbtnModif" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jbtnSupp" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -288,9 +288,6 @@
           </StringArray>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcbctypeActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lbletablissement">
       <Properties>
@@ -318,9 +315,6 @@
           </StringArray>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcbccivilActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblcp">
       <Properties>

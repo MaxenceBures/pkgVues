@@ -6,6 +6,7 @@
 package pkgVues;
 
 import java.util.Iterator;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.Query;
 import org.hibernate.Transaction;
@@ -21,8 +22,8 @@ import pkgEntites.Typechambre;
  */
 public class jpAttributionConsult extends javax.swing.JPanel {
 
-  static  private boolean bCharge = false;
-  static  private boolean bCharge2 = false;
+   private boolean bChargeEtablissement = false;
+    private boolean bChargeGroupe = false;
     private String sEtablissementId = "";
     private String sGroupeId = "";
     private String sTypeChambre = "";
@@ -49,9 +50,20 @@ public class jpAttributionConsult extends javax.swing.JPanel {
         jtxtQuantite.setText("");
     }
     
-    
+    private boolean isNumeric(){
+        boolean bNb = false;
+        try {
+           Integer iTest = Integer.parseInt(jtxtQuantite.getText());
+           bNb = true;
+        } catch (Exception e) {
+        }
+        return(bNb);
+        
+    }
+     
         //Charge la liste deroulante des etablissements
     public void chargeListeEtablissement() {
+        
         jcmbEtablissement.removeAllItems();
         String sReq = "FROM Etablissement ORDER BY Eta_id ASC";
         Query q = jfPrincipal.getSession().createQuery(sReq);
@@ -60,7 +72,7 @@ public class jpAttributionConsult extends javax.swing.JPanel {
             Etablissement unEtablissement = (Etablissement) eta.next();
             jcmbEtablissement.addItem(unEtablissement.getEtaNom());
         }
-        bCharge = true;
+        bChargeEtablissement = true;
     }
         //Charge la liste deroulante des groupes /
     public void chargeListeGroupe() {
@@ -72,7 +84,7 @@ public class jpAttributionConsult extends javax.swing.JPanel {
             Groupe unGroupe = (Groupe) grp.next();
             jcmbGroupe.addItem(unGroupe.getGpNom());
         }
-        bCharge2 = true;
+        bChargeGroupe = true;
     }
           
         //Permet de recuperer le nom d'un type de chambre à partir de son identifiant
@@ -175,6 +187,12 @@ public class jpAttributionConsult extends javax.swing.JPanel {
         }
 
         jlblQuantite.setText("Quantité Demandée");
+
+        jtxtQuantite.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtxtQuantiteActionPerformed(evt);
+            }
+        });
 
         jbtModifier.setText("Modifier");
         jbtModifier.addActionListener(new java.awt.event.ActionListener() {
@@ -322,7 +340,7 @@ public class jpAttributionConsult extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
         //Permet de recuperer l'identifiant à partir d'un nom d'etablissement
     private void jcmbEtablissementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbEtablissementActionPerformed
-        if (bCharge) {
+        if (bChargeEtablissement) {
             viderChamps();
             String sReq = "FROM Etablissement WHERE Eta_Nom = ?";
             Query q = jfPrincipal.getSession().createQuery(sReq);
@@ -347,7 +365,7 @@ public class jpAttributionConsult extends javax.swing.JPanel {
     }//GEN-LAST:event_jTblAttributionMouseClicked
         //Permet de recuperer l'identifiant d'un groupe à partir de son nom
     private void jcmbGroupeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbGroupeActionPerformed
-        if (bCharge2) {
+        if (bChargeGroupe) {
             viderChamps();
             String sReq = "FROM Groupe WHERE Gp_Nom = ?";
             Query q = jfPrincipal.getSession().createQuery(sReq);
@@ -360,18 +378,23 @@ public class jpAttributionConsult extends javax.swing.JPanel {
     }//GEN-LAST:event_jcmbGroupeActionPerformed
         //Permet de modifier la quantite de reservée à partir de l'etablissement, du groupe et du type de chambre
     private void jbtModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtModifierActionPerformed
-        String sReq = "FROM Attribution WHERE Att_Etablissement = '"+sEtablissementId+"' AND Att_Groupe = '"+sGroupeId+"' AND Att_Typechambre = '"+sTypeChambre+"'";
-        Query q = jfPrincipal.getSession().createQuery(sReq);
-       /* q.setParameter(0, sEtablissementId);
-        q.setParameter(1, sGroupeId);
-        q.setParameter(2, sTypeChambre)*/
-        Attribution unAttribution = (Attribution) q.uniqueResult();
-        unAttribution.setAttNbchambres(Byte.parseByte(jtxtQuantite.getText()));
-        Transaction tx = jfPrincipal.getSession().beginTransaction();
-        jfPrincipal.getSession().update (unAttribution);
-        tx.commit();
-        chargeTable();
-        chargerQuantite(sEtablissementId, sTypeChambre);
+        if(isNumeric() == true){
+            String sReq = "FROM Attribution WHERE Att_Etablissement = ? AND Att_Groupe = ? AND Att_Typechambre = ?";
+            Query q = jfPrincipal.getSession().createQuery(sReq);
+            q.setParameter(0, sEtablissementId);
+            q.setParameter(1, sGroupeId);
+            q.setParameter(2, sTypeChambre);
+            Attribution unAttribution = (Attribution) q.uniqueResult();
+            unAttribution.setAttNbchambres(Byte.parseByte(jtxtQuantite.getText()));
+            Transaction tx = jfPrincipal.getSession().beginTransaction();
+            jfPrincipal.getSession().update (unAttribution);
+            tx.commit();
+            chargeTable();
+            chargerQuantite(sEtablissementId, sTypeChambre);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "La valeur saisie pour la quantité doit être un chiffre");
+        }
     }//GEN-LAST:event_jbtModifierActionPerformed
 
     private void jtxtTypeChambreRecapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtTypeChambreRecapActionPerformed
@@ -381,17 +404,27 @@ public class jpAttributionConsult extends javax.swing.JPanel {
     private void jtxtEtabRecapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtEtabRecapActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtxtEtabRecapActionPerformed
-        //Permet d'afficher les reservations d'un groupe pour un etablissement dans le tableau
-    private void chargeTable(){
-        jlblErreur.setVisible(false);
-        int iNbligne;
+
+    private void jtxtQuantiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtxtQuantiteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtxtQuantiteActionPerformed
+    
+    private void viderTable(){
+         int iNbligne;
         int i;
         iNbligne = jTblAttribution.getRowCount();
         if(iNbligne >= 0)
             {
-            for(i=0;i <iNbligne; i++) {
-                ((DefaultTableModel)jTblAttribution.getModel()).removeRow(0);
-            }    
+                for(i=0;i <iNbligne; i++) {
+                    ((DefaultTableModel)jTblAttribution.getModel()).removeRow(0);
+                }   
+            }
+    }
+    
+    //Permet d'afficher les reservations d'un groupe pour un etablissement dans le tableau
+    private void chargeTable(){
+        viderTable();
+        jlblErreur.setVisible(false);
         String sReq = "FROM Attribution WHERE ATT_GROUPE = '"+sGroupeId+"' AND ATT_ETABLISSEMENT = '"+sEtablissementId+"'";
         Query q = jfPrincipal.getSession().createQuery(sReq);
                 if (q.list().size() == 0) {
@@ -406,7 +439,7 @@ public class jpAttributionConsult extends javax.swing.JPanel {
                 ((DefaultTableModel) jTblAttribution.getModel()).addRow(new Object[] {unAttribution.getId().getAttTypechambre(), unAttribution.getAttNbchambres()});
        
             }
-            }
+          //  }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;

@@ -7,6 +7,7 @@
 package pkgVues;
 
 import java.util.Iterator;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.Query;
 import org.hibernate.Transaction;
@@ -19,7 +20,7 @@ import pkgEntites.Offre;
  */
 public class jpHebergementConsult extends javax.swing.JPanel {
         
-  static  private boolean bCharge = false;
+    private boolean bChargeListe = false;
     private String sEtablissementId = "";
     private String sChambresId = "";
     
@@ -39,9 +40,19 @@ public class jpHebergementConsult extends javax.swing.JPanel {
            Etablissement unEtablissement = (Etablissement) eta.next();
            jCbListeEtablissement.addItem(unEtablissement.getEtaNom());
            }
-        bCharge = true;
+        bChargeListe = true;
     }
     
+    private boolean isNumeric(){
+        boolean bNb = false;
+        try {
+           Integer iTest = Integer.parseInt(jtxtModif.getText());
+           bNb = true;
+        } catch (Exception e) {
+        }
+        return(bNb);
+        
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -151,7 +162,7 @@ public class jpHebergementConsult extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
         //Permet de recuperer l'identifiant de l'etablissement recuperé
     private void jCbListeEtablissementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCbListeEtablissementActionPerformed
-        if(bCharge)
+        if(bChargeListe)
             {
             String sReq = "from Etablissement Where Eta_Nom = ?";
             Query q = jfPrincipal.getSession().createQuery(sReq);
@@ -159,7 +170,7 @@ public class jpHebergementConsult extends javax.swing.JPanel {
             Etablissement unEtablissement = (Etablissement) q.uniqueResult();
             sEtablissementId = unEtablissement.getEtaId();
             chargeTable(sEtablissementId);
-            //chargeListeTypeChambre();
+            
             }
     }//GEN-LAST:event_jCbListeEtablissementActionPerformed
         //Permet de recuperer le type de chambre et la quantité de chambres pour l'etablissement choisi.
@@ -172,14 +183,19 @@ public class jpHebergementConsult extends javax.swing.JPanel {
     }//GEN-LAST:event_jTblHebergementMouseClicked
         //Permet de modifier la quantite de chambres pour l'etablissement et le type de chambres choisi
     private void jbtnModifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnModifActionPerformed
-        String sReq = "from Offre Where Off_Etablissement = '"+sEtablissementId+"' And Off_TypeChambre = '"+sChambresId+"'";
-        Query q = jfPrincipal.getSession().createQuery(sReq);
-        Offre unOffre = (Offre) q.uniqueResult();
-        unOffre.setOffNbchambres(Byte.parseByte(jtxtModif.getText()));
-        Transaction tx = jfPrincipal.getSession().beginTransaction();
-        tx.commit();
-        jfPrincipal.getSession().update (unOffre);
-        chargeTable(sEtablissementId);
+        if(isNumeric() == true){   
+            String sReq = "from Offre Where Off_Etablissement = '"+sEtablissementId+"' And Off_TypeChambre = '"+sChambresId+"'";
+            Query q = jfPrincipal.getSession().createQuery(sReq);
+            Offre unOffre = (Offre) q.uniqueResult();
+            unOffre.setOffNbchambres(Byte.parseByte(jtxtModif.getText()));
+            Transaction tx = jfPrincipal.getSession().beginTransaction();
+            tx.commit();
+            jfPrincipal.getSession().update (unOffre);
+            chargeTable(sEtablissementId);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "La valeur saisie pour la quantité doit être un chiffre");
+        }
     }//GEN-LAST:event_jbtnModifActionPerformed
         //Permet de charger le tableau à partir de l'etablissement choisi
     private void chargeTable(String sEtablissementId){
@@ -191,7 +207,7 @@ public class jpHebergementConsult extends javax.swing.JPanel {
             for(i=0;i <iNbligne; i++){
                 ((DefaultTableModel)jTblHebergement.getModel()).removeRow(0);
             }
-        String sReq = "From Offre Where off_etablissement = ? Order by off_etablissement, off_typechambre Asc";//,Etablissement Where eta_id = off_etablissement and eta_nom = ?
+        String sReq = "From Offre Where off_etablissement = ? Order by off_etablissement, off_typechambre Asc";
         Query q = jfPrincipal.getSession().createQuery(sReq);
         q.setParameter(0, sEtablissementId);
         Iterator eta = q.iterate();

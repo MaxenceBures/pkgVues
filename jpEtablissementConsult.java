@@ -21,8 +21,7 @@ import pkgEntites.Etablissement;
  */
 public class jpEtablissementConsult extends javax.swing.JPanel {
    
-      //  Boolean bCivil = false;
-      //  Boolean bTypeEta = false;
+
             //Chargement des listes deroulantes
     public jpEtablissementConsult() {
         initComponents();
@@ -133,11 +132,6 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
         lblnom.setText("Nom");
 
         jcbctype.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jcbctype.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbctypeActionPerformed(evt);
-            }
-        });
 
         lbletablissement.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         lbletablissement.setText("Etablissement");
@@ -145,11 +139,6 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
         lblville.setText("Ville");
 
         jcbccivil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jcbccivil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbccivilActionPerformed(evt);
-            }
-        });
 
         lblcp.setText("Code Postal");
 
@@ -257,17 +246,17 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
                             .addComponent(jbtnModif)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(jbtnSupp))))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblconsult, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblconsult, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
-                .addComponent(lbletablissement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbletablissement, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -298,7 +287,7 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
                     .addComponent(jtxttype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jcbctype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
-                .addComponent(lblresponsable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblresponsable, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblrespnom1)
@@ -310,11 +299,11 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
                     .addComponent(jtxtrespnom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblrespprenom)
                     .addComponent(jtxtrespprenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
+                .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnModif)
                     .addComponent(jbtnSupp))
-                .addGap(45, 45, 45))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
         //Recuperation des données concernant l'etablissement choisi à partir de son identifiant, afin de prechargé les champs de modifs
@@ -332,7 +321,7 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
             unEtablissement.setEtaTel(jtxttelephone.getText());
             unEtablissement.setEtaMail(jtxtmail.getText());
 
-         //  if(bTypeEta == true){ 
+         
            if(jcbctype.getSelectedItem().toString() == "Ecole Publique")
             {
                 bType = 0;
@@ -345,10 +334,8 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
             {
                 bType = 2;
             }
-          // }
-           else{
-               bType = unEtablissement.getEtaType();
-           }
+          
+           
            unEtablissement.setEtaType(bType);
            unEtablissement.setEtaNomresp(jtxtrespnom.getText());
            unEtablissement.setEtaPrenomresp(jtxtrespprenom.getText());
@@ -389,14 +376,6 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
             }
               // TODO add your handling code here:
     }//GEN-LAST:event_jbtnSuppActionPerformed
-
-    private void jcbctypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbctypeActionPerformed
-            // bTypeEta = true;   // TODO add your handling code here:
-    }//GEN-LAST:event_jcbctypeActionPerformed
-
-    private void jcbccivilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbccivilActionPerformed
-        //bCivil = true;        // TODO add your handling code here:
-    }//GEN-LAST:event_jcbccivilActionPerformed
         //Permet de charger les champs lorsque l'on a selectionné un etablissement
     private void chargerChamps(Object cellule){
         String sReq = "From Etablissement Where Eta_Id = ?";
