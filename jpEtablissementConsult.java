@@ -21,8 +21,8 @@ import pkgEntites.Etablissement;
  */
 public class jpEtablissementConsult extends javax.swing.JPanel {
    
-        Boolean bCivil = false;
-        Boolean bTypeEta = false;
+      //  Boolean bCivil = false;
+      //  Boolean bTypeEta = false;
             //Chargement des listes deroulantes
     public jpEtablissementConsult() {
         initComponents();
@@ -332,7 +332,7 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
             unEtablissement.setEtaTel(jtxttelephone.getText());
             unEtablissement.setEtaMail(jtxtmail.getText());
 
-           if(bTypeEta == true){ 
+         //  if(bTypeEta == true){ 
            if(jcbctype.getSelectedItem().toString() == "Ecole Publique")
             {
                 bType = 0;
@@ -345,7 +345,7 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
             {
                 bType = 2;
             }
-           }
+          // }
            else{
                bType = unEtablissement.getEtaType();
            }
@@ -391,11 +391,11 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
     }//GEN-LAST:event_jbtnSuppActionPerformed
 
     private void jcbctypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbctypeActionPerformed
-             bTypeEta = true;   // TODO add your handling code here:
+            // bTypeEta = true;   // TODO add your handling code here:
     }//GEN-LAST:event_jcbctypeActionPerformed
 
     private void jcbccivilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbccivilActionPerformed
-        bCivil = true;        // TODO add your handling code here:
+        //bCivil = true;        // TODO add your handling code here:
     }//GEN-LAST:event_jcbccivilActionPerformed
         //Permet de charger les champs lorsque l'on a selectionné un etablissement
     private void chargerChamps(Object cellule){
