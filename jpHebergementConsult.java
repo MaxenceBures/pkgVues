@@ -42,7 +42,7 @@ public class jpHebergementConsult extends javax.swing.JPanel {
            }
         bChargeListe = true;
     }
-    
+        //Permet de verifier si la valeur saisie pour la quantité est de type integer
     private boolean isNumeric(){
         boolean bNb = false;
         try {
@@ -170,7 +170,6 @@ public class jpHebergementConsult extends javax.swing.JPanel {
             Etablissement unEtablissement = (Etablissement) q.uniqueResult();
             sEtablissementId = unEtablissement.getEtaId();
             chargeTable(sEtablissementId);
-            
             }
     }//GEN-LAST:event_jCbListeEtablissementActionPerformed
         //Permet de recuperer le type de chambre et la quantité de chambres pour l'etablissement choisi.

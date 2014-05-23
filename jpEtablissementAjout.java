@@ -257,10 +257,14 @@ public class jpEtablissementAjout extends javax.swing.JPanel {
    unNouveauEtablissement.setEtaNomresp(jtxtrespnom.getText());
    unNouveauEtablissement.setEtaPrenomresp(jtxtrespprenom.getText());
    unNouveauEtablissement.setEtaCivilresp(jcbccivil.getSelectedItem().toString());
-   Transaction tx = jfPrincipal.getSession().beginTransaction();
-   jfPrincipal.getSession().save(unNouveauEtablissement);
-   tx.commit();
-   JOptionPane.showMessageDialog(null, "Etablissement Ajouté");
+        try {
+            Transaction tx = jfPrincipal.getSession().beginTransaction();
+            jfPrincipal.getSession().save(unNouveauEtablissement);
+            tx.commit();
+            JOptionPane.showMessageDialog(null, "Etablissement Ajouté");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Etablissement déjà existant");
+        }
       
     }//GEN-LAST:event_jbtAjoutActionPerformed
 
