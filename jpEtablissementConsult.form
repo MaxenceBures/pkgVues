@@ -30,12 +30,6 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="lblconsult" min="-2" max="-2" attributes="0"/>
                   <Group type="103" alignment="0" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace pref="294" max="-2" attributes="0"/>
-                          <Component id="jbtnSupp" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                          <Component id="jbtnModif" min="-2" max="-2" attributes="0"/>
-                      </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" alignment="0" groupAlignment="0" attributes="0">
@@ -77,13 +71,20 @@
                                   <Component id="lbletablissement" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="lbltype" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="lblmail" alignment="1" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jcbctype" alignment="1" min="-2" pref="160" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="-2" pref="194" max="-2" attributes="0"/>
+                                              <Component id="lblmail" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="jtxtmail" min="-2" pref="233" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                                              <Component id="jtxttype" min="-2" pref="94" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              <Component id="jcbctype" min="-2" pref="160" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jtxtmail" min="-2" pref="233" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Component id="lblresponsable" alignment="0" min="-2" pref="146" max="-2" attributes="0"/>
@@ -94,18 +95,27 @@
                                   </Group>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
                                           <Component id="jtxtrespnom" min="-2" pref="94" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="lblrespprenom" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="jtxtrespprenom" min="-2" pref="233" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="jcbccivil" alignment="0" min="-2" pref="159" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <Component id="jtxtcivil" min="-2" pref="94" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="jcbccivil" min="-2" pref="159" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
                           </Group>
                           <EmptySpace pref="72" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="jbtnModif" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="jbtnSupp" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -154,15 +164,17 @@
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jcbctype" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lbltype" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtxttype" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jcbctype" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               <Component id="lblresponsable" max="32767" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jcbccivil" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblrespnom1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jtxtcivil" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jcbccivil" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -171,12 +183,12 @@
                   <Component id="lblrespprenom" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jtxtrespprenom" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jbtnModif" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jbtnSupp" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -192,7 +204,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jbtnModif">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Modification"/>
+        <Property name="text" type="java.lang.String" value="Modifier"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnModifActionPerformed"/>
@@ -276,6 +288,9 @@
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcbctypeActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lbletablissement">
       <Properties>
@@ -303,6 +318,9 @@
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcbccivilActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblcp">
       <Properties>
@@ -369,11 +387,15 @@
     </Component>
     <Component class="javax.swing.JButton" name="jbtnSupp">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Suppresion"/>
+        <Property name="text" type="java.lang.String" value="Supprimer"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnSuppActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jtxttype">
+    </Component>
+    <Component class="javax.swing.JTextField" name="jtxtcivil">
     </Component>
   </SubComponents>
 </Form>

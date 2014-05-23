@@ -5,6 +5,7 @@
 package pkgVues;
 
 import java.util.Iterator;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.Query;
 import org.hibernate.Transaction;
@@ -178,18 +179,28 @@ public class jpTypeChambreConsult extends javax.swing.JPanel {
         //Suppresion dy type de chambre selectionné / Rechargement du table afin de ne plus afficher le type supprimé 
     private void jbtnSupprActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSupprActionPerformed
         // TODO add your handling code here:
-        String sReq = "FROM Typechambre WHERE TCh_Id = ?";
-        Query q = jfPrincipal.getSession().createQuery(sReq);
-        q.setParameter(0, jtxtid.getText());
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.showConfirmDialog(this, "Etes-vous sûr de vouloir supprimer ?", "Suppression",dialogButton);
+            if(dialogResult==0)
+            {
+                String sReq = "FROM Typechambre WHERE TCh_Id = ?";
+                Query q = jfPrincipal.getSession().createQuery(sReq);
+                q.setParameter(0, jtxtid.getText());
+
+                Typechambre unTypeChambre = (Typechambre) q.uniqueResult();
+                jfPrincipal.getSession().delete(unTypeChambre);
+
+                Transaction tx = jfPrincipal.getSession().beginTransaction();
+                tx.commit();
+                jfPrincipal.getSession().update(unTypeChambre);
+                //JOptionPane.showMessageDialog(null, "Type chambre supprimé avec succès !");
+                chargerTable() ;
+            }
+            else
+            {
+    
+            }
         
-        Typechambre unTypeChambre = (Typechambre) q.uniqueResult();
-        jfPrincipal.getSession().delete(unTypeChambre);
-        
-        Transaction tx = jfPrincipal.getSession().beginTransaction();
-        tx.commit();
-        jfPrincipal.getSession().update(unTypeChambre);
-        //JOptionPane.showMessageDialog(null, "Type chambre supprimé avec succès !");
-        chargerTable() ;
     }//GEN-LAST:event_jbtnSupprActionPerformed
         //Permet de charger les champs lorsque l'on a selectionné un type de chambre
     private void chargerChamps(Object cellule){

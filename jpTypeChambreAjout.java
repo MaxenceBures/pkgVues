@@ -94,12 +94,14 @@ public class jpTypeChambreAjout extends javax.swing.JPanel {
          //Recuperation des inputs dans l'objet unNewTypeChambre de type TypeChambre / Ajout de cette objet dans la bdd.
     private void jbtnajoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnajoutActionPerformed
         // TODO add your handling code here:
+
         Typechambre unNewTypeChambre = new Typechambre();
         unNewTypeChambre.setTchId(jtxtid.getText());
         unNewTypeChambre.setTchLibelle(jtxtlibelle.getText());
         Transaction tx = jfPrincipal.getSession().beginTransaction();
         jfPrincipal.getSession().save(unNewTypeChambre);
         tx.commit();
+        JOptionPane.showMessageDialog(null, "Type Chambre Ajouté");
         //JOptionPane.showMessageDialog(null, "Nouveau type chambre ajouté avec succès !");
     }//GEN-LAST:event_jbtnajoutActionPerformed
 

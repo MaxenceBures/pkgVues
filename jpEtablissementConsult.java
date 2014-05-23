@@ -7,6 +7,7 @@
 package pkgVues;
 
 import java.util.Iterator;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.hibernate.Query;
 import org.hibernate.Transaction;
@@ -20,6 +21,8 @@ import pkgEntites.Etablissement;
  */
 public class jpEtablissementConsult extends javax.swing.JPanel {
    
+        Boolean bCivil = false;
+        Boolean bTypeEta = false;
             //Chargement des listes deroulantes
     public jpEtablissementConsult() {
         initComponents();
@@ -31,6 +34,9 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
         jcbctype.addItem("Ecole Privée");
         jcbctype.addItem("Autres");
         jtxtid.disable();
+        jtxtcivil.disable();
+        jtxttype.disable();
+        
    
     }
 
@@ -72,13 +78,15 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
         lblrespprenom = new javax.swing.JLabel();
         jtxtrespprenom = new javax.swing.JTextField();
         jbtnSupp = new javax.swing.JButton();
+        jtxttype = new javax.swing.JTextField();
+        jtxtcivil = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(600, 600));
 
         lblconsult.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         lblconsult.setText("Consultation/Modification");
 
-        jbtnModif.setText("Modification");
+        jbtnModif.setText("Modifier");
         jbtnModif.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnModifActionPerformed(evt);
@@ -125,6 +133,11 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
         lblnom.setText("Nom");
 
         jcbctype.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbctype.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbctypeActionPerformed(evt);
+            }
+        });
 
         lbletablissement.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         lbletablissement.setText("Etablissement");
@@ -132,6 +145,11 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
         lblville.setText("Ville");
 
         jcbccivil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbccivil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbccivilActionPerformed(evt);
+            }
+        });
 
         lblcp.setText("Code Postal");
 
@@ -154,7 +172,7 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
 
         lblrespprenom.setText("Prenom");
 
-        jbtnSupp.setText("Suppresion");
+        jbtnSupp.setText("Supprimer");
         jbtnSupp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnSuppActionPerformed(evt);
@@ -173,11 +191,6 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblconsult)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbtnSupp)
-                            .addGap(42, 42, 42)
-                            .addComponent(jbtnModif))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,12 +224,17 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
                                     .addComponent(lbletablissement, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(lbltype)
-                                        .addGap(60, 60, 60)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(lblmail)
-                                            .addComponent(jcbctype, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jtxtmail, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(194, 194, 194)
+                                                .addComponent(lblmail)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jtxtmail, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(62, 62, 62)
+                                                .addComponent(jtxttype, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jcbctype, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                 .addComponent(lblresponsable, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,8 +248,15 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
                                             .addComponent(lblrespprenom)
                                             .addGap(18, 18, 18)
                                             .addComponent(jtxtrespprenom, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jcbccivil, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jtxtcivil, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jcbccivil, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jbtnModif)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jbtnSupp))))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -269,25 +294,27 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
                     .addComponent(jtxtmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jcbctype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbltype))
-                .addGap(18, 18, 18)
+                    .addComponent(lbltype)
+                    .addComponent(jtxttype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcbctype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
                 .addComponent(lblresponsable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jcbccivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblrespnom1))
+                    .addComponent(lblrespnom1)
+                    .addComponent(jtxtcivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jcbccivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblrespnom)
                     .addComponent(jtxtrespnom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblrespprenom)
                     .addComponent(jtxtrespprenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnModif)
                     .addComponent(jbtnSupp))
-                .addGap(46, 46, 46))
+                .addGap(45, 45, 45))
         );
     }// </editor-fold>//GEN-END:initComponents
         //Recuperation des données concernant l'etablissement choisi à partir de son identifiant, afin de prechargé les champs de modifs
@@ -305,6 +332,7 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
             unEtablissement.setEtaTel(jtxttelephone.getText());
             unEtablissement.setEtaMail(jtxtmail.getText());
 
+           if(bTypeEta == true){ 
            if(jcbctype.getSelectedItem().toString() == "Ecole Publique")
             {
                 bType = 0;
@@ -317,6 +345,10 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
             {
                 bType = 2;
             }
+           }
+           else{
+               bType = unEtablissement.getEtaType();
+           }
            unEtablissement.setEtaType(bType);
            unEtablissement.setEtaNomresp(jtxtrespnom.getText());
            unEtablissement.setEtaPrenomresp(jtxtrespprenom.getText());
@@ -337,16 +369,34 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
     }//GEN-LAST:event_tblconsultMouseClicked
         //Suppresion de l'etablissement selectionné / Rechargement du table afin de ne plus afficher l'etablissement supprimé 
     private void jbtnSuppActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSuppActionPerformed
-        String sReq = "FROM Etablissement WHERE eta_id = ?";
-        Query q = jfPrincipal.getSession().createQuery(sReq);
-        q.setParameter(0, jtxtid.getText());
-        Etablissement unEtablissement = (Etablissement) q.uniqueResult();
-        jfPrincipal.getSession().delete(unEtablissement);
-        Transaction tx = jfPrincipal.getSession().beginTransaction();
-        tx.commit();
-        jfPrincipal.getSession().update(unEtablissement);
-        chargerTable();        // TODO add your handling code here:
+        int dialogButton = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.showConfirmDialog(this, "Etes-vous sûr de vouloir supprimer ?", "Suppression",dialogButton);
+            if(dialogResult==0)
+            {
+                String sReq = "FROM Etablissement WHERE eta_id = ?";
+                Query q = jfPrincipal.getSession().createQuery(sReq);
+                q.setParameter(0, jtxtid.getText());
+                Etablissement unEtablissement = (Etablissement) q.uniqueResult();
+                jfPrincipal.getSession().delete(unEtablissement);
+                Transaction tx = jfPrincipal.getSession().beginTransaction();
+                tx.commit();
+                jfPrincipal.getSession().update(unEtablissement);
+                chargerTable();  
+            }
+            else
+            {
+
+            }
+              // TODO add your handling code here:
     }//GEN-LAST:event_jbtnSuppActionPerformed
+
+    private void jcbctypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbctypeActionPerformed
+             bTypeEta = true;   // TODO add your handling code here:
+    }//GEN-LAST:event_jcbctypeActionPerformed
+
+    private void jcbccivilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbccivilActionPerformed
+        bCivil = true;        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbccivilActionPerformed
         //Permet de charger les champs lorsque l'on a selectionné un etablissement
     private void chargerChamps(Object cellule){
         String sReq = "From Etablissement Where Eta_Id = ?";
@@ -362,7 +412,22 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
         jtxtmail.setText(unEtablissement.getEtaMail());
         jtxtrespnom.setText(unEtablissement.getEtaNomresp());
         jtxtrespprenom.setText(unEtablissement.getEtaPrenomresp());
-
+        jtxtcivil.setText(unEtablissement.getEtaCivilresp());
+        Byte bType = unEtablissement.getEtaType();
+        String sType = "";
+        if(bType == 0)
+            {
+                sType = "Ecole publique";
+            }
+           else if(bType == 1)
+            {
+                 sType = "Ecole privée";
+            }
+           else if(bType == 2)
+            {
+                  sType = "Autres";
+            }
+        jtxttype.setText(sType);
     }
         //Permet de charger les etablissements dans le tableau
     public void chargerTable(){ 
@@ -394,6 +459,7 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
     private javax.swing.JComboBox jcbccivil;
     private javax.swing.JComboBox jcbctype;
     private javax.swing.JTextField jtxtadresse;
+    private javax.swing.JTextField jtxtcivil;
     private javax.swing.JTextField jtxtcp;
     private javax.swing.JTextField jtxtid;
     private javax.swing.JTextField jtxtmail;
@@ -401,6 +467,7 @@ public class jpEtablissementConsult extends javax.swing.JPanel {
     private javax.swing.JTextField jtxtrespnom;
     private javax.swing.JTextField jtxtrespprenom;
     private javax.swing.JTextField jtxttelephone;
+    private javax.swing.JTextField jtxttype;
     private javax.swing.JTextField jtxtville;
     private javax.swing.JLabel lbladresse;
     private javax.swing.JLabel lblconsult;

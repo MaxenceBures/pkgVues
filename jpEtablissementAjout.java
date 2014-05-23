@@ -6,6 +6,7 @@
 
 package pkgVues;
 
+import javax.swing.JOptionPane;
 import org.hibernate.Transaction;
 import pkgEntites.Etablissement;
 
@@ -259,7 +260,7 @@ public class jpEtablissementAjout extends javax.swing.JPanel {
    Transaction tx = jfPrincipal.getSession().beginTransaction();
    jfPrincipal.getSession().save(unNouveauEtablissement);
    tx.commit();
-  
+   JOptionPane.showMessageDialog(null, "Etablissement Ajouté");
       
     }//GEN-LAST:event_jbtAjoutActionPerformed
 
